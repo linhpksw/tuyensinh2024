@@ -37,36 +37,11 @@ const Navbar = () => {
     ]
 
     const [activeLink, setActiveLink] = useState(null);
-    const [scrollActive, setScrollActive] = useState(false);
-
-    const debounce = (func, wait) => {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    };
-
-
-    useEffect(() => {
-        const checkScroll = debounce(() => {
-            setScrollActive(window.scrollY > 20);
-        }, 50);  // Change delay as needed
-
-        window.addEventListener('scroll', checkScroll);
-
-        // Cleanup function
-        return () => window.removeEventListener('scroll', checkScroll);
-    }, []);
 
     return (
-        <header className={`lg:sticky lg:bg-white  lg:top-0 lg:z-50 lg:px-8 lg:transition-all lg:w-full ${scrollActive ? ' lg:shadow-md lg:pt-1' : ' lg:pt-6'}`}>
+        <header className={`lg:sticky lg:bg-white lg:top-0 lg:z-50 lg:px-8 lg:transition-all lg:w-full lg:shadow-md`}>
 
-            <nav className='p-8 lg:py-4 container relative flex flex-wrap items-center justify-between mx-auto lg:justify-between xl:px-0'>
+            <nav className='px-8 py-4 lg:py-4 container relative flex flex-wrap items-center justify-between mx-auto lg:justify-between xl:px-0'>
                 {/* Logo  */}
                 <Disclosure>
                     {({ open }) => (

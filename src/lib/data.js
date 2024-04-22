@@ -4,9 +4,9 @@ import thayLam from '../../public/img/teacher/thayLam.jpg';
 import thayPhuong from '../../public/img/teacher/thayPhuong.jpg';
 import thayHung from '../../public/img/teacher/thayHung.jpg';
 
-export const offer = {
-    c2: 'Kính gửi các quý vị phụ huynh học sinh và các con! Năm học 2023 - 2024, Câu lạc bộ Toán Ánh Sáng tổ chức: 2 lớp toán 8 ôn thi vào chuyên toán, 2 lớp 9 ôn thi vào chuyên toán và 1 lớp 9 nâng cao ôn thi toán điều kiện vào 10, có kiểm tra đầu vào để xếp lớp. Thông tin chi tiết phụ huynh xem ở phía dưới.',
-    c3: 'Kính gửi các quý vị phụ huynh học sinh và các con! Năm học 2023-2024, Trung tâm toán Câu lạc bộ Ánh Sáng tổ chức 2 lớp toán 10 ôn thi THPTQG. Lớp 10A0 - Lớp vận dụng cao, dành cho các học sinh lớp chuyên toán lý hóa các trường chuyên, lớp chọn khối A và A1 trường LTV, LQĐ với mục tiêu điểm 9-10 môn toán thi đại học. Điều kiện xét tuyển đầu vào của lớp là HS lớp chuyên toán lý hoá các trường chuyên hoặc HS trường thường có điểm thi vào 10 môn toán từ 9,5 trở lên. Lớp 10A1 - Lớp toán nâng cao, dành cho các học sinh khá giỏi các trường THPT, với mục tiêu điểm 9 môn toán thi đại học. Điều kiện xét tuyển đầu vào của lớp là điểm thi vào 10 môn toán từ 8,5 trở lên.',
+export const intro = {
+    c2: 'Kính gửi các quý vị phụ huynh học sinh và các con! Năm học 2024 - 2025, CLB Ánh Sáng tổ chức: 1 lớp Toán 8 ôn thi vào chuyên toán, 2 lớp 9 ôn thi vào chuyên toán và 1 lớp 9 nâng cao ôn thi toán điều kiện vào 10, có kiểm tra đầu vào để xếp lớp. Thông tin chi tiết phụ huynh xem ở phía dưới.',
+    c3: 'Kính gửi các quý vị phụ huynh học sinh và các con! Năm học 2024 - 2025, CLB Ánh Sáng tổ chức 2 lớp Toán 10 ôn thi THPTQG. Lớp 10A0 - Lớp vận dụng cao, dành cho các học sinh lớp chuyên toán lý hóa các trường chuyên, lớp chọn khối A và A1 trường LTV, LQĐ với mục tiêu điểm 9-10 môn toán thi đại học. Điều kiện xét tuyển đầu vào của lớp là HS lớp chuyên toán lý hoá các trường chuyên hoặc HS trường thường có điểm thi vào 10 môn toán từ 9,5 trở lên. Lớp 10A1 - Lớp toán nâng cao, dành cho các học sinh khá giỏi các trường THPT, với mục tiêu điểm 9 môn toán thi đại học. Điều kiện xét tuyển đầu vào của lớp là điểm thi vào 10 môn toán từ 8,5 trở lên.',
 };
 
 export const timetable = {
@@ -14,16 +14,16 @@ export const timetable = {
         {
             no: 1,
             grade: 'LỚP 8 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật hàng tuần (16h - 17h45) - Khai giảng từ ngày Thứ Ba 18/07',
+            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 14/7 (15h - 16h45) - Khai giảng ngày Thứ Tư 17/7',
             child: [
                 {
                     subject: 'Hình học',
-                    time: 'Thứ 3 từ 19h30 - 21h30',
+                    time: 'Thứ 5 từ 19h - 21h',
                     teacher: 'Thầy Lâm',
                 },
                 {
                     subject: 'Đại số - Số học',
-                    time: 'Thứ 7 từ 19h30 - 21h30',
+                    time: 'Chủ nhật từ 19h - 21h',
                     teacher: 'PGS-TS Phùng Văn Mạnh',
                 },
             ],
@@ -33,16 +33,16 @@ export const timetable = {
         {
             no: 2,
             grade: 'LỚP 9A0 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp đợt 2 từ 17h - 19h ngày Chủ nhật 18/06 - Khai giảng từ ngày Thứ Năm 08/06',
+            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 16h45) - Khai giảng ngày Thứ Bảy 8/6',
             child: [
                 {
                     subject: 'Hình học',
-                    time: 'Chủ nhật từ 8h - 10h',
+                    time: 'Thứ 7 từ 19h - 21h',
                     teacher: 'Thầy Lâm',
                 },
                 {
                     subject: 'Đại số - Số học',
-                    time: 'Thứ 5 từ 19h30 - 21h30',
+                    time: 'Thứ 3 từ 18h30 - 21h30',
                     teacher: 'PGS-TS Phùng Văn Mạnh',
                 },
             ],
@@ -52,16 +52,16 @@ export const timetable = {
         {
             no: 3,
             grade: 'LỚP 9A1 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp đợt 2 từ 17h - 19h ngày Chủ nhật 18/06 - Khai giảng từ ngày Thứ Năm 08/06',
+            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 16h45) - Khai giảng ngày Thứ Bảy 8/6',
             child: [
                 {
                     subject: 'Hình học',
-                    time: 'Thứ 5 từ 19h30 - 21h30',
+                    time: 'Thứ 3 từ 19h - 21h',
                     teacher: 'Thầy Lâm',
                 },
                 {
                     subject: 'Đại số - Số học',
-                    time: 'Chủ nhật từ 8h - 10h',
+                    time: 'Thứ 7 từ 18h30 - 21h30',
                     teacher: 'PGS-TS Phùng Văn Mạnh',
                 },
             ],
@@ -71,16 +71,16 @@ export const timetable = {
         {
             no: 4,
             grade: 'LỚP 9A2 TOÁN NÂNG CAO',
-            opening: 'Không kiểm tra xếp lớp đầu vào - Khai giảng ngày Chủ Nhật 18/06',
+            opening: 'Không kiểm tra xếp lớp đầu vào - Khai giảng ngày Chủ Nhật 9/6',
             child: [
                 {
                     subject: 'Đại số',
-                    time: 'Chủ nhật từ 16h - 17h45',
+                    time: 'Chủ nhật từ 19h - 20h45',
                     teacher: 'Cô Hường',
                 },
                 {
                     subject: 'Hình học và bất đẳng thức',
-                    time: 'Thứ 2 từ 19h45 - 21h30',
+                    time: 'Thứ 2 từ 19h - 20h45',
                     teacher: 'Thầy Lâm',
                 },
             ],
@@ -92,16 +92,16 @@ export const timetable = {
         {
             no: 1,
             grade: 'LỚP 10A0 - VẬN DỤNG CAO',
-            opening: 'Khai giảng vào 19h30 Thứ Tư ngày 02/08 tại phòng 309.',
+            opening: 'Khai giảng vào...',
             child: [
                 {
                     subject: 'Hình học',
-                    time: 'Thứ 4 từ 19h30 - 21h15',
+                    time: '',
                     teacher: 'Thầy Lâm',
                 },
                 {
                     subject: 'Đại số',
-                    time: 'Thứ 2 từ 19h30 - 21h15',
+                    time: '',
                     teacher: 'Thầy Hưng',
                 },
             ],
@@ -111,16 +111,16 @@ export const timetable = {
         {
             no: 2,
             grade: 'LỚP 10A1 - NÂNG CAO',
-            opening: 'Khai giảng vào 19h30 Thứ Tư ngày 02/08 tại phòng 204.',
+            opening: 'Khai giảng vào...',
             child: [
                 {
                     subject: 'Hình học',
-                    time: 'Thứ 4 từ 19h30 - 21h15',
+                    time: '',
                     teacher: 'Cô Hường',
                 },
                 {
                     subject: 'Đại số',
-                    time: 'Thứ 2 từ 17h45 - 19h30',
+                    time: '',
                     teacher: 'Thầy Phương',
                 },
             ],

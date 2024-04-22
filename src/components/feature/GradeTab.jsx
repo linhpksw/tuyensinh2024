@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import TimeTable from "@/components/feature/TimeTable"
-import { timetable, teacher, offer } from "@/lib/data"
+import { timetable, teacher, intro } from "@/lib/data"
 import SectionTitle from '@/components/ui/SectionTitle'
 import Team from '@/components/feature/Team'
 import Hero from '@/components/feature/Hero'
@@ -15,7 +15,7 @@ export const GradeTab = () => {
             </TabsList>
 
             <TabsContent value="c2">
-                <Hero data={offer.c2} />
+                <Hero data={intro.c2} />
 
                 <SectionTitle
                     id='schedule'
@@ -35,7 +35,7 @@ export const GradeTab = () => {
             </TabsContent>
 
             <TabsContent value="c3">
-                <Hero data={offer.c3} />
+                <Hero data={intro.c3} />
 
                 <SectionTitle
                     id='schedule'

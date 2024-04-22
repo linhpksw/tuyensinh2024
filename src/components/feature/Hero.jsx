@@ -60,7 +60,7 @@ const Hero = ({ data }) => {
 
     return (
         <>
-            <Container className='flex items-start flex-wrap lg:flex-nowrap lg:gap-10'>
+            <Container className='flex items-start flex-wrap lg:flex-nowrap lg:gap-10 mt-8 lg:mt-0'>
                 <div id='about' className='flex items-center w-full lg:w-1/2'>
                     <div className='max-w-2xl mb-8 lg:mb-0'>
                         <h1 className='text-2xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight '>
