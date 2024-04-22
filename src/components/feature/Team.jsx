@@ -1,8 +1,8 @@
 import Image from "next/image"
-import Container from "./Container"
-import giaovien1 from '../../public/img/giaovien-1.jpg'
-import giaovien2 from '../../public/img/giaovien-2.jpg'
-import giaovien3 from '../../public/img/giaovien-3.jpg'
+import Container from "../layout/Container"
+import giaovien1 from '../../../public/img/giaovien-1.jpg'
+import giaovien2 from '../../../public/img/giaovien-2.jpg'
+import giaovien3 from '../../../public/img/giaovien-3.jpg'
 
 const Team = () => {
     const people = [

@@ -1,11 +1,11 @@
-import Footer from '@/components/Footer';
-import Hero from '@/components/Hero';
-import Navbar from '@/components/NavBar';
-import SectionTitle from '@/components/SectionTitle';
-import Team from '@/components/Team';
-import TimeTable from '@/components/TimeTable';
+import Footer from '@/components/layout/Footer';
+import Hero from '@/components/feature/Hero';
+import Navbar from '@/components/layout/NavBar';
+import SectionTitle from '@/components/ui/SectionTitle';
+import Team from '@/components/feature/Team';
+import TimeTable from '@/components/feature/TimeTable';
 import Head from 'next/head';
-import BackToTop from '@/components/BackToTop';
+import BackToTop from '@/components/layout/BackToTop';
 import { Button } from '@/components/ui/button';
 
 export default function Home() {

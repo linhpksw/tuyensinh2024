@@ -1,4 +1,4 @@
-import Confirmation from '@/components/Confirmation';
+import Confirmation from '@/components/modal/Confirmation';
 import Head from 'next/head';
 import { client } from '@/lib/mongodb';
 import { useState } from 'react';

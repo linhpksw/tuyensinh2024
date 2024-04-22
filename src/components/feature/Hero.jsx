@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
-import Container from '@/components/Container';
+import Container from '@/components/layout/Container';
 import { useState } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
-import MyModal from './MyModal';
+import MyModal from '../modal/MyModal';
 import ShowImage from './ShowImage';
 
 

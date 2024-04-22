@@ -1,4 +1,4 @@
-import Container from "./Container";
+import Container from "../layout/Container";
 
 const SectionTitle = (props) => {
     return (

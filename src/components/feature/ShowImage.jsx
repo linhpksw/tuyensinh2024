@@ -1,11 +1,11 @@
 import Image from 'next/image'
-import hocbong1 from '../../public/img/hocbong-1.jpg'
-import hocbong2 from '../../public/img/hocbong-2.jpg'
-import hocbong3 from '../../public/img/hocbong-3.jpg'
-import hocbong4 from '../../public/img/hocbong-4.jpg'
-import hocbong5 from '../../public/img/hocbong-5.jpg'
-import thi1 from '../../public/img/thi-1.jpg'
-import thi2 from '../../public/img/thi-2.jpg'
+import hocbong1 from '../../../public/img/hocbong-1.jpg'
+import hocbong2 from '../../../public/img/hocbong-2.jpg'
+import hocbong3 from '../../../public/img/hocbong-3.jpg'
+import hocbong4 from '../../../public/img/hocbong-4.jpg'
+import hocbong5 from '../../../public/img/hocbong-5.jpg'
+import thi1 from '../../../public/img/thi-1.jpg'
+import thi2 from '../../../public/img/thi-2.jpg'
 
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 

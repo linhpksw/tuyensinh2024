@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Disclosure, Transition } from '@headlessui/react';
 import { Link as LinkScroll } from 'react-scroll';
 
-import logoImg from '../../public/logo.svg'
+import logoImg from '../../../public/logo.svg'
 
 import { useState, useEffect } from 'react';
 

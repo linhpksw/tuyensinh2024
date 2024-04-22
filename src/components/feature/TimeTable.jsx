@@ -1,4 +1,4 @@
-import Container from './Container'
+import Container from '../layout/Container'
 import { PhoneIcon } from '@heroicons/react/24/outline'
 
 const TimeTable = () => {

@@ -1,5 +1,4 @@
-import Container from "./Container"
-import logoImg from '../../public/logo.svg'
+import logoImg from '../../../public/logo.svg'
 import Image from "next/image"
 
 import { MapPinIcon, PhoneIcon } from "@heroicons/react/24/solid"
