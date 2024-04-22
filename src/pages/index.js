@@ -3,6 +3,7 @@ import Navbar from '@/components/layout/NavBar';
 import Head from 'next/head';
 import BackToTop from '@/components/layout/BackToTop';
 import { GradeTab } from '@/components/feature/GradeTab';
+import Script from 'next/script';
 
 export default function Home() {
     return (
@@ -21,6 +22,16 @@ export default function Home() {
             <Navbar />
 
             <GradeTab />
+
+            {/* Zalo Chat Widget */}
+            <div
+                className='zalo-chat-widget'
+                data-oaid='2133786749915158274'
+                data-welcome-message='Trung tâm có thể hỗ trợ được gì cho quý phụ huynh ạ?'
+                data-autopopup='2'
+                data-width=''
+                data-height=''></div>
+            <Script src='https://sp.zalo.me/plugins/sdk.js'></Script>
 
             <BackToTop />
 
