@@ -16,7 +16,6 @@ export default function Home() {
                 <meta property='og:description' content='Trung tâm học toán chất lượng cao từ lớp 8 đến lớp 12' />
 
                 <link rel='icon' href='/favicon.ico' />
-                <script src='/js/flowbite.min.js' defer></script>
             </Head>
 
             <Navbar />

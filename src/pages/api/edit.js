@@ -9,8 +9,8 @@ export default async function handler(req, res) {
     const { body } = req;
 
     try {
-        const database = client.db('tuyensinhdb');
-        const student = database.collection('student');
+        const database = client.db(process.env.DB_NAME);
+        const student = database.collection(process.env.COLLECTION_NAME);
 
         for (let i = 0; i < body.length; i++) {
             const item = body[i];

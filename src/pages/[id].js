@@ -38,8 +38,8 @@ export async function getServerSideProps(context) {
 
     // Fetch the student data from the database based on the ID
     try {
-        const database = client.db('tuyensinhdb');
-        const student = database.collection('student');
+        const database = client.db(process.env.DB_NAME);
+        const student = database.collection(process.env.COLLECTION_NAME);
 
         const query = { registerPhone: id };
         const options = {

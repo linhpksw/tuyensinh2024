@@ -1,7 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-const uri = 'mongodb+srv://linhpksw:Bmcmc20@tuyensinh.uptfdvd.mongodb.net/';
-const client = new MongoClient(uri);
+const client = new MongoClient(process.env.MONGODB_URI);
 
 // Connect to MongoDB when the module is imported
 client

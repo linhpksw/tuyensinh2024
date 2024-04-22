@@ -3,8 +3,8 @@ import { client } from '@/lib/mongodb';
 export default async function handler(req, res) {
     if (req.method === 'GET') {
         try {
-            const database = client.db('tuyensinhdb');
-            const studentsCollection = database.collection('student');
+            const database = client.db(process.env.DB_NAME);
+            const studentsCollection = database.collection(process.env.COLLECTION_NAME);
 
             const query = {};
             const options = {

@@ -5,8 +5,8 @@ export default async function handler(req, res) {
     const { registerPhone } = req.body;
 
     try {
-        const database = client.db('tuyensinhdb');
-        const student = database.collection('student');
+        const database = client.db(process.env.DB_NAME);
+        const student = database.collection(process.env.COLLECTION_NAME);
 
         const query = { registerPhone: registerPhone };
 
