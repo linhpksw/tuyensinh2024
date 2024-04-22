@@ -9,7 +9,7 @@ export default function Home() {
         <>
             <Head>
                 <title>Câu lạc bộ Toán Ánh Sáng</title>
-                <meta property='og:image' content='https://tuyensinh.clbanhsang.com/img/hocbong-4.jpg' />
+                <meta property='og:image' content='https://tuyensinh.clbanhsang.com/img/scholarship/hocbong-4.jpg' />
                 <meta property='og:url' content='https://tuyensinh.clbanhsang.com/' />
                 <meta property='og:type' content='website' />
                 <meta property='og:title' content='Câu lạc bộ Toán Ánh Sáng' />
