@@ -65,7 +65,7 @@ const Footer = () => {
                     <Image src={logoImg} alt="logo" width={250} height={250} />
                 </div>
 
-                <p className="text-sm text-center text-gray-500">2023 &copy; All rights reserved.</p>
+                <p className="text-sm text-center text-gray-500">2024 &copy; All rights reserved.</p>
             </div>
         </>
 

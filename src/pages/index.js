@@ -29,8 +29,8 @@ export default function Home() {
                 data-oaid='2133786749915158274'
                 data-welcome-message='Trung tâm có thể hỗ trợ được gì cho quý phụ huynh ạ?'
                 data-autopopup='2'
-                data-width=''
-                data-height=''></div>
+                data-width='300'
+                data-height='500'></div>
             <Script src='https://sp.zalo.me/plugins/sdk.js'></Script>
 
             <BackToTop />

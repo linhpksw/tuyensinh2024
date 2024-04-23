@@ -1,11 +1,11 @@
 import React from "react";
 
-const Container = (props) => {
+const Container = ({ className, children }) => {
     return (
         <div
-            className={`container w-full px-8 pb-8 lg:pt-8 mx-auto xl:px-0 ${props.className ? props.className : ""
-                }`}>
-            {props.children}
+            className={`container w-full px-8 pb-8 lg:pt-8 mx-auto xl:px-0 
+            ${className ? className : ""}`}>
+            {children}
         </div>
     );
 }

@@ -1,10 +1,11 @@
 import React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import TimeTable from "@/components/feature/TimeTable"
-import { timetable, teacher, intro } from "@/lib/data"
+import { timetable, teacher, intro, mathBook } from "@/lib/data"
 import SectionTitle from '@/components/ui/SectionTitle'
 import Team from '@/components/feature/Team'
 import Hero from '@/components/feature/Hero'
+import AccordionQA from '@/components/feature/AccordionQA'
 
 export const GradeTab = () => {
     return (
@@ -32,6 +33,16 @@ export const GradeTab = () => {
                 </SectionTitle>
 
                 <Team data={teacher.c2} />
+
+                <SectionTitle
+                    id='accordionQA'
+                    pretitle='Câu hỏi thường gặp'
+                    title='Giúp giải đáp những thắc mắc của phụ huynh và học sinh'>
+                </SectionTitle>
+
+                <AccordionQA />
+
+
             </TabsContent>
 
             <TabsContent value="c3">
