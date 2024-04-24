@@ -7,22 +7,23 @@ import {
 } from "@/components/ui/accordion"
 import Container from '@/components/layout/Container'
 import CardQA from '@/components/feature/CardQA'
-import { mathBook } from "@/lib/data"
-
 
 const AccordionQA = ({ data }) => {
     return (
         <Container className="flex justify-center">
-            <Accordion className='w-[45rem]' type="single" defaultValue="item-1" collapsible>
-                <AccordionItem value="item-1">
-                    <AccordionTrigger>
-                        Học sinh cần chuẩn bị gì cho kì thi đầu vào?</AccordionTrigger>
-                    <AccordionContent>
-                        Trung tâm gợi ý một số tài liệu để học sinh ôn luyện trước kì thi.
+            <Accordion className='w-[45rem]' type="single" collapsible>
+                {data.items.map((item, index) => (
+                    <AccordionItem key={index} value={item.id}>
+                        <AccordionTrigger>
+                            {item.question}
+                        </AccordionTrigger>
+                        <AccordionContent>
+                            {item.answer}
 
-                        <CardQA data={mathBook.c2} />
-                    </AccordionContent>
-                </AccordionItem>
+                            {item.id === 1 && <CardQA data={data.mathBook} />}
+                        </AccordionContent>
+                    </AccordionItem>
+                ))}
             </Accordion>
         </Container>
 

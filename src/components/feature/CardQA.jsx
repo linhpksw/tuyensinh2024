@@ -8,7 +8,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 
-export default function CardQA({ data }) {
+export default function CardQA({ data = { l7: [], l8: [] } }) {
     return (
         <Card className="overflow-hidden mt-4">
             <CardHeader>

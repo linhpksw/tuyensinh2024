@@ -9,31 +9,93 @@ import toan7P2 from '../../public/img/document/toan7P2.jpg';
 import toan8P1 from '../../public/img/document/toan8P1.jpg';
 import toan8P2 from '../../public/img/document/toan8P2.jpg';
 
-export const mathBook = {
-    c2: {
-        l7: [
-            {
-                no: 1,
-                src: toan7P1,
-            },
-            {
-                no: 2,
-                src: toan7P2,
-            },
-        ],
-        l8: [
-            {
-                no: 3,
-                src: toan8P1,
-            },
-            {
-                no: 4,
-                src: toan8P2,
-            },
-        ],
-    },
+import chuyenSuPham from '../../public/img/fb/chuyenSuPham.png';
+import deToanMinhHoa from '../../public/img/fb/deToanMinhHoa.png';
+import giaiDe from '../../public/img/fb/giaiDe.png';
+import moiNgay02 from '../../public/img/fb/moiNgay02.png';
+import thongTinTuyenSinh from '../../public/img/fb/thongTinTuyenSinh.png';
+import kinhNghiemLuyenThi from '../../public/img/fb/kinhNghiemLuyenThi.png';
 
-    c3: {},
+export const fbGroup = [
+    {
+        id: 1,
+        src: chuyenSuPham,
+        alt: 'Chuyên sư phạm',
+    },
+    {
+        id: 2,
+        src: deToanMinhHoa,
+        alt: 'Đề toán minh họa',
+    },
+    {
+        id: 3,
+        src: giaiDe,
+        alt: 'Giải đề',
+    },
+    {
+        id: 4,
+        src: moiNgay02,
+        alt: 'Mỗi ngày 0.2 điểm',
+    },
+    {
+        id: 5,
+        src: thongTinTuyenSinh,
+        alt: 'Thông tin tuyển sinh',
+    },
+    {
+        id: 6,
+        src: kinhNghiemLuyenThi,
+        alt: 'Kinh nghiệm luyện thi',
+    },
+];
+
+export const gradeTab = [
+    {
+        grade: 'c2',
+        title: 'Dành cho khối THCS',
+    },
+    {
+        grade: 'c3',
+        title: 'Dành cho khối THPT',
+    },
+];
+
+export const accordianQA = {
+    c2: {
+        items: [
+            {
+                id: 1,
+                question: 'Học sinh cần chuẩn bị gì cho kì thi đầu vào?',
+                answer: 'Trung tâm gợi ý một số tài liệu để học sinh ôn luyện trước kì thi.',
+            },
+        ],
+
+        mathBook: {
+            l7: [
+                {
+                    no: 1,
+                    src: toan7P1,
+                },
+                {
+                    no: 2,
+                    src: toan7P2,
+                },
+            ],
+            l8: [
+                {
+                    no: 3,
+                    src: toan8P1,
+                },
+                {
+                    no: 4,
+                    src: toan8P2,
+                },
+            ],
+        },
+    },
+    c3: {
+        items: [],
+    },
 };
 
 export const intro = {
