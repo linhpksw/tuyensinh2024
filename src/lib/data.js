@@ -32,7 +32,7 @@ export const info = {
     googleMap: 'https://goo.gl/maps/proqtNoL24gvuNxy9',
     logo: 'https://tuyensinh.clbanhsang.com/img/logo/logo-alter.png',
     zaloOA: 'https://zalo.me/clbanhsang',
-    zaloOAQR: 'https://tuyensinh.clbanhsang.com/img/zalo-qr.jpg',
+    zaloOAQR: 'https://tuyensinh.clbanhsang.com/img/logo/zalo-qr.jpg',
 };
 
 export const navLinks = [
