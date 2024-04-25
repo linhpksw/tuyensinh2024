@@ -33,6 +33,7 @@ export const info = {
     logo: 'https://tuyensinh.clbanhsang.com/img/logo/logo-alter.png',
     zaloOA: 'https://zalo.me/clbanhsang',
     zaloOAQR: 'https://tuyensinh.clbanhsang.com/img/logo/zalo-qr.jpg',
+    zaloOAQRPath: '/../../public/img/logo/zalo-qr.jpg',
 };
 
 export const navLinks = [
