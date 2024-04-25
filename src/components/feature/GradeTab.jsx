@@ -1,12 +1,16 @@
 import React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import TimeTable from "@/components/feature/TimeTable"
-import { timetable, teacher, intro, gradeTab, accordianQA, fbGroup } from "@/lib/data"
+import {
+    timetable, teacher, intro, gradeTab, accordianQA,
+    fbGroup, info
+} from "@/lib/data"
 import SectionTitle from '@/components/ui/SectionTitle'
 import Team from '@/components/feature/Team'
 import Hero from '@/components/feature/Hero'
 import AccordionQA from '@/components/feature/AccordionQA'
 import CarouselFB from '@/components/feature/CarouselFB'
+import Info from '@/components/feature/Info'
 
 export const GradeTab = () => {
     return (
@@ -19,6 +23,7 @@ export const GradeTab = () => {
 
             {gradeTab.map((item, index) => (
                 <TabsContent key={index} value={item.grade}>
+
                     <Hero data={intro[item.grade]} />
 
                     <SectionTitle
@@ -52,6 +57,14 @@ export const GradeTab = () => {
                     </SectionTitle>
 
                     <CarouselFB data={fbGroup} />
+
+                    <SectionTitle
+                        id='info'
+                        pretitle='Thông tin lớp học'
+                        title='Địa chỉ lớp học và số điện thoại liên hệ'>
+                    </SectionTitle>
+
+                    <Info data={info} />
                 </TabsContent>
             ))}
         </Tabs>

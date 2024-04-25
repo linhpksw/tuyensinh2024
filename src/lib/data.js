@@ -16,6 +16,36 @@ import moiNgay02 from '../../public/img/fb/moiNgay02.png';
 import thongTinTuyenSinh from '../../public/img/fb/thongTinTuyenSinh.png';
 import kinhNghiemLuyenThi from '../../public/img/fb/kinhNghiemLuyenThi.png';
 
+export const info = {
+    address: 'Trường THPT DL Lê Hồng Phong - số 27 Tô Hiệu, Hà Đông',
+    displayPhone: '036 286 0970',
+    phone: '0362860970',
+    googleMap: 'https://goo.gl/maps/proqtNoL24gvuNxy9',
+};
+
+export const navLinks = [
+    {
+        name: 'Về chúng tôi',
+        href: 'about',
+    },
+    {
+        name: 'Lịch học',
+        href: 'schedule',
+    },
+    {
+        name: 'Giáo viên',
+        href: 'teacher',
+    },
+    {
+        name: 'Q & A',
+        href: 'faq',
+    },
+    {
+        name: 'Liên hệ',
+        href: 'info',
+    },
+];
+
 export const fbGroup = [
     {
         id: 1,

@@ -4,6 +4,7 @@ import Head from 'next/head';
 import BackToTop from '@/components/layout/BackToTop';
 import { GradeTab } from '@/components/feature/GradeTab';
 import Script from 'next/script';
+import { navLinks } from '@/lib/data';
 
 export default function Home() {
     return (
@@ -19,7 +20,7 @@ export default function Home() {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
 
-            <Navbar />
+            <Navbar data={navLinks} />
 
             <GradeTab />
 
@@ -35,7 +36,7 @@ export default function Home() {
 
             <BackToTop />
 
-            <Footer />
+            <Footer data={navLinks} />
         </>
     );
 }

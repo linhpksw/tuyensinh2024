@@ -5,37 +5,9 @@ import { Link as LinkScroll } from 'react-scroll';
 
 import logoImg from '../../../public/logo.svg'
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const Navbar = () => {
-    const navigation = [
-        {
-            name: 'Về chúng tôi',
-            href: 'about',
-            desktop: 'aboutDesktopKey',
-            mobile: 'aboutMobileKey',
-
-        },
-        {
-            name: 'Lịch học',
-            href: 'schedule',
-            desktop: 'scheduleDesktopKey',
-            mobile: 'scheduleMobileKey',
-        },
-        {
-            name: 'Giáo viên',
-            href: 'teacher',
-            desktop: 'teacherDesktopKey',
-            mobile: 'teacherMobileKey',
-        },
-        {
-            name: 'Thông tin',
-            href: 'infor',
-            desktop: 'inforDesktopKey',
-            mobile: 'inforMobileKey',
-        },
-    ]
-
+const Navbar = ({ data }) => {
     const [activeLink, setActiveLink] = useState(null);
 
     return (
@@ -53,7 +25,7 @@ const Navbar = () => {
 
                                 <Disclosure.Button
                                     aria-label='Toggle Menu'
-                                    className='px-2 py-1 ml-auto text-gray-500 rounded-md lg:hidden hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none'>
+                                    className='px-2 py-1 ml-auto text-gray-500 rounded-md lg:hidden hover:text-rose-500 focus:text-rose-500 focus:bg-rose-100 focus:outline-none'>
                                     <svg
                                         className='w-6 h-6 fill-current'
                                         xmlns='http://www.w3.org/2000/svg'
@@ -83,7 +55,7 @@ const Navbar = () => {
                                     leaveTo='transform scale-95 opacity-0'>
                                     <Disclosure.Panel className='flex flex-wrap w-full mt-5 lg:hidden'>
                                         <>
-                                            {navigation.map((item) => (
+                                            {data.map((item) => (
                                                 <LinkScroll
                                                     key={item.mobile}
                                                     activeClass='active'
@@ -94,7 +66,7 @@ const Navbar = () => {
                                                     onSetActive={() => {
                                                         setActiveLink(item.href);
                                                     }}
-                                                    className='w-full px-4 py-2 -ml-4 text-gray-500 rounded-md hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none cursor-pointer'>
+                                                    className='w-full px-4 py-2 -ml-4 text-gray-500 rounded-md hover:text-rose-500 focus:text-rose-500 focus:bg-rose-100 focus:outline-none cursor-pointer'>
                                                     {item.name}
                                                 </LinkScroll>
                                             ))}
@@ -109,8 +81,7 @@ const Navbar = () => {
                 {/* menu  */}
                 <div className='hidden text-center lg:flex lg:items-center'>
                     <ul className='items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex'>
-                        {navigation.map((menu) => (
-
+                        {data.map((menu) => (
                             <LinkScroll
                                 key={menu.desktop}
                                 activeClass='active'
@@ -133,8 +104,6 @@ const Navbar = () => {
                         ))}
                     </ul>
                 </div>
-
-
             </nav>
         </header>
     );

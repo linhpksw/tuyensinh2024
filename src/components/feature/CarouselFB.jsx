@@ -10,20 +10,26 @@ import {
 import Container from '@/components/layout/Container'
 import Image from 'next/image'
 import Link from 'next/link'
+import Autoplay from "embla-carousel-autoplay"
 
 
 const CarouselFB = ({ data }) => {
     return (
-        <Container className=''>
+        <Container>
             <Carousel
+                plugins={[
+                    Autoplay({
+                        delay: 3000,
+                    }),
+                ]}
                 orientation="horizontal"
                 opts={{
                     align: "center",
                     loop: true,
                 }}
-                className="w-full"
+                className="px-6"
             >
-                <CarouselContent className='-mt-1 h-[20rem]'>
+                <CarouselContent className='min-h-max'>
                     {data.map((item, index) => (
                         <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                             <div className="p-1">
@@ -47,13 +53,12 @@ const CarouselFB = ({ data }) => {
                 <CarouselNext />
 
                 <div className='flex justify-center mt-10'>
-                    <button
-                        type='button'
-                        className={`mx-auto max-w-max rounded-md border border-transparent bg-rose-500 px-5 py-3 font-medium text-white shadow hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:px-10`}>
-                        <Link href='https://www.facebook.com/groups/1404470336293968'>
-                            Tham gia nhóm Facebook ngay hôm nay!
-                        </Link>
-                    </button>
+                    <Link
+                        className='mx-auto max-w-max rounded-md border border-transparent bg-rose-500 px-5 py-3 font-medium text-white shadow hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:px-10'
+                        href='https://www.facebook.com/groups/1404470336293968'>
+                        Tham gia nhóm Facebook ngay hôm nay!
+                    </Link>
+
                 </div>
             </Carousel>
 
