@@ -24,7 +24,7 @@ export const GradeTab = () => {
             {gradeTab.map((item, index) => (
                 <TabsContent key={index} value={item.grade}>
 
-                    <Hero data={intro[item.grade]} />
+                    <Hero data={intro[item.grade]} grade={item.grade} />
 
                     <SectionTitle
                         id='schedule'

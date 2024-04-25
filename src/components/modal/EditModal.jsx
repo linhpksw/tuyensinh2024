@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { useState, Fragment } from 'react'
 import { UserIcon, UsersIcon } from '@heroicons/react/24/outline'
+import { classOptions } from '@/lib/data';
 
 export default function EditModal({ data, onDataUpdated, registerPhone, onClose }) {
     const [isOpen, setIsOpen] = useState(true);
@@ -110,7 +111,7 @@ export default function EditModal({ data, onDataUpdated, registerPhone, onClose 
     };
 
 
-    const subjectOptions = [
+    const classOptions = [
         'Lớp 8 chuyên toán',
         'Lớp 9A0 chuyên toán',
         'Lớp 9A1 chuyên toán',
@@ -174,7 +175,7 @@ export default function EditModal({ data, onDataUpdated, registerPhone, onClose 
                             defaultValue={student.subject || ''}
                             id={`subject${i}`} className="mb-5 block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-300 peer" required>
                             <option value="" className='text-gray-500'>Chọn lớp học...</option>
-                            {subjectOptions.map((option) => (
+                            {classOptions.map((option) => (
                                 <option key={option} value={option} className=' text-gray-500'>{option}</option>
                             ))}
                         </select>

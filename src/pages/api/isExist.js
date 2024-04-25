@@ -3,9 +3,9 @@ import { client } from '@/lib/mongodb';
 async function isExist(phone) {
     const database = client.db(process.env.DB_NAME);
     const student = database.collection(process.env.COLLECTION_NAME);
+    const result = await student.findOne({ registerPhone: phone });
 
-    const query = { registerPhone: phone };
-    return (await student.countDocuments(query)) ? true : false;
+    return result !== null;
 }
 
 export default async function handler(req, res) {

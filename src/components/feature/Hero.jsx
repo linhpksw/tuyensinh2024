@@ -5,13 +5,11 @@ import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import MyModal from '../modal/MyModal';
 import ShowImage from './ShowImage';
 
-
-const Hero = ({ data }) => {
+const Hero = ({ data, grade }) => {
     const [isCorrect, setIsCorrect] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [registerPhone, setRegisterPhone] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-
 
     const router = useRouter();
 

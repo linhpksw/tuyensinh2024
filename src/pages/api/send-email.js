@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { info, classInfo } from '@/lib/data';
 
 const sendEmail = async (req, res) => {
     try {
@@ -15,7 +16,7 @@ const sendEmail = async (req, res) => {
         const htmlContent = generateHtmlContent(data);
 
         const mailOptions = {
-            from: '"Câu lạc bộ Toán Ánh Sáng" <' + 'clbtoananhsang@gmail.com' + '>',
+            from: '"Câu lạc bộ Toán Ánh Sáng" <' + process.env.EMAIL_USER + '>',
             to: data[0].email,
             subject: 'Thư xác nhận đăng ký học thành công',
             html: htmlContent,
@@ -39,18 +40,7 @@ const sendEmail = async (req, res) => {
 export default sendEmail;
 
 function generateHtmlContent(data) {
-    const info = {
-        'Lớp 8 chuyên toán':
-            'Lớp đã khai giảng vào Thứ Ba 18/07 và có tổ chức thêm lịch kiểm tra xếp lớp vào chiều Chủ nhật hàng tuần (16h - 17h45).',
-        'Lớp 9A0 chuyên toán':
-            'lịch kiểm tra xếp lớp đợt 2 sẽ diễn ra vào 17h Chủ nhật 18/06 và khai giảng từ Thứ Năm 08/06.',
-        'Lớp 9A1 chuyên toán':
-            'lịch kiểm tra xếp lớp đợt 2 sẽ diễn ra vào 17h Chủ nhật 18/06 và khai giảng từ Thứ Năm 08/06.',
-        'Lớp 9A2 toán nâng cao':
-            'đối với lớp toán nâng cao, học sinh không cần kiểm tra xếp lớp đầu vào. Lịch khai giảng sẽ vào Chủ nhật 18/06.',
-    };
-
-    const note = info[data[0].subject];
+    const note = classInfo[data[0].subject];
 
     const studentNum = data.length;
 
@@ -80,15 +70,7 @@ function generateHtmlContent(data) {
   <p style="color: #374151;">Câu lạc bộ Toán Ánh Sáng xin thông báo,</p>
 
   <p style="color: #374151;">
-    Đơn đăng kí học cho con đã được trung tâm xác nhận. Phụ huynh vui lòng kiểm tra kĩ lại thông tin bên dưới.
-  </p>
-
-  <p style="color: #e11d48;">
-    Lưu ý: ${note}
-  </p>
-
-  <p style="color: #e11d48;">
-    Cụ thể thông tin chi tiết, lớp toán sẽ gửi đến quý phụ huynh trong thời gian sớm nhất. Phụ huynh chú ý kiểm tra email và điện thoại để không lỡ mất lịch kiểm tra quan trọng này ạ.
+    Đơn đăng kí học cho con đã được trung tâm xác nhận. Phụ huynh vui lòng kiểm tra lại thông tin bên dưới.
   </p>
 
   ${data
@@ -140,33 +122,48 @@ function generateHtmlContent(data) {
   <p>
     Nếu thông tin trên không chính xác, phụ huynh nhấn chỉnh sửa
     <a href="https://tuyensinh.clbanhsang.com/${data[0].registerPhone}"
-      >tại đây</a
-    >.
+      >tại đây.</a
+    >
   </p>
+
+  <p style="color: #e11d48;">Chú ý: ${note}</p>
+
+  <p style="color: #e11d48;">Nếu có bất kì thắc mắc, phụ huynh có thể nhắn tin đến Zalo OA của trung tâm <a href="https://zalo.me/clbanhsang">tại đây.</a> Hoặc quét mã QR bên dưới và nhấn "Quan tâm" để nhận những thông báo mới nhất trong thời gian tới.<p>
+
+  <a href="https://zalo.me/clbanhsang">
+    <img
+      src="${info.zaloOAQR}"
+      alt="Zalo OA Câu lạc bộ Toán Ánh Sáng"
+      style="width: 100px; height: 100px; margin-top: 20px; margin-bottom: 20px;"
+    />
+  </a>
 
   <hr style="margin-top: 30px" />
 
   <a href="https://tuyensinh.clbanhsang.com">
     <img
-      src="https://tuyensinh.clbanhsang.com/img/logo-alter.png"
+      src="${info.logo}"
       alt="Logo Câu lạc bộ Toán Ánh Sáng"
       style="width:252px; height:40px; padding-top:20px"
     />
   </a>
 
-  <p style="margin-top: 20px; color: #4b5563;">
-    <b>Trung tâm Toán Câu lạc bộ Ánh Sáng</b>
+  <p>
+    <b style="margin-top: 20px; color: #4b5563;">Zalo OA:</b>
+    <a href="${info.zaloOA}"
+      >Trung tâm Toán Câu lạc bộ Ánh Sáng</a
+    >
   </p>
 
   <p>
     <b style="color: #4b5563;">Địa chỉ:</b>
-    <a href="https://goo.gl/maps/proqtNoL24gvuNxy9"
-      >Trường THPT DL Lê Hồng Phong - số 27 Tô Hiệu, Hà Đông</a
+    <a href="${info.googleMap}"
+      >${info.address}</a
     >
   </p>
   <p>
     <b style="color: #4b5563;">Cô Hường phụ trách: </b>
-    <a href="tel:0362860970">036 286 0970</a>
+    <a href="tel:${info.phone}">${info.displayPhone}</a>
   </p>
 </body>
   `;

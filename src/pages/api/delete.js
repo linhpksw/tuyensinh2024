@@ -12,8 +12,6 @@ export default async function handler(req, res) {
 
         const result = await student.deleteMany(query);
 
-        console.log(result.deletedCount);
-
         if (result.deletedCount === 0) {
             res.status(400).json({ status: 'error', message: 'Failed to delete student' });
             return;

@@ -16,11 +16,23 @@ import moiNgay02 from '../../public/img/fb/moiNgay02.png';
 import thongTinTuyenSinh from '../../public/img/fb/thongTinTuyenSinh.png';
 import kinhNghiemLuyenThi from '../../public/img/fb/kinhNghiemLuyenThi.png';
 
+export const classOptions = [
+    { type: 'Lớp 8 chuyên toán', state: 'enabled' },
+    { type: 'Lớp 9A0 chuyên toán', state: 'enabled' },
+    { type: 'Lớp 9A1 chuyên toán', state: 'enabled' },
+    { type: 'Lớp 9A2 toán nâng cao', state: 'enabled' },
+    { type: 'Lớp 10A0 - Vận dụng cao', state: 'disabled' },
+    { type: 'Lớp 10A1 - Nâng cao', state: 'disabled' },
+];
+
 export const info = {
     address: 'Trường THPT DL Lê Hồng Phong - số 27 Tô Hiệu, Hà Đông',
     displayPhone: '036 286 0970',
     phone: '0362860970',
     googleMap: 'https://goo.gl/maps/proqtNoL24gvuNxy9',
+    logo: 'https://tuyensinh.clbanhsang.com/img/logo/logo-alter.png',
+    zaloOA: 'https://zalo.me/clbanhsang',
+    zaloOAQR: 'https://tuyensinh.clbanhsang.com/img/zalo-qr.jpg',
 };
 
 export const navLinks = [
@@ -131,6 +143,13 @@ export const accordianQA = {
 export const intro = {
     c2: 'Kính gửi các quý vị phụ huynh học sinh và các con! Năm học 2024 - 2025, CLB Ánh Sáng tổ chức: 1 lớp Toán 8 ôn thi vào chuyên toán, 2 lớp 9 ôn thi vào chuyên toán và 1 lớp 9 nâng cao ôn thi toán điều kiện vào 10, có kiểm tra đầu vào để xếp lớp. Thông tin chi tiết phụ huynh xem ở phía dưới.',
     c3: 'Kính gửi các quý vị phụ huynh học sinh và các con! Năm học 2024 - 2025, CLB Ánh Sáng tổ chức 2 lớp Toán 10 ôn thi THPTQG. Lớp 10A0 - Lớp vận dụng cao, dành cho các học sinh lớp chuyên toán lý hóa các trường chuyên, lớp chọn khối A và A1 trường LTV, LQĐ với mục tiêu điểm 9-10 môn toán thi đại học. Điều kiện xét tuyển đầu vào của lớp là HS lớp chuyên toán lý hoá các trường chuyên hoặc HS trường thường có điểm thi vào 10 môn toán từ 9,5 trở lên. Lớp 10A1 - Lớp toán nâng cao, dành cho các học sinh khá giỏi các trường THPT, với mục tiêu điểm 9 môn toán thi đại học. Điều kiện xét tuyển đầu vào của lớp là điểm thi vào 10 môn toán từ 8,5 trở lên.',
+};
+
+export const classInfo = {
+    'Lớp 8 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 14/7 (15h - 16h45) - Khai giảng ngày Thứ Tư 17/7.',
+    'Lớp 9A0 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 16h45) - Khai giảng ngày Thứ Bảy 8/6.',
+    'Lớp 9A1 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 16h45) - Khai giảng ngày Thứ Bảy 8/6',
+    'Lớp 9A2 toán nâng cao': 'Không kiểm tra xếp lớp đầu vào - Khai giảng ngày Chủ Nhật 9/6',
 };
 
 export const timetable = {

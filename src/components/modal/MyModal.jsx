@@ -3,6 +3,7 @@ import { useState, Fragment } from 'react'
 import { UserIcon, UsersIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router';
 import { customAlphabet } from 'nanoid';
+import { classOptions } from '@/lib/data';
 
 
 export default function MyModal({ onClose, registerPhone }) {
@@ -21,18 +22,10 @@ export default function MyModal({ onClose, registerPhone }) {
         setNumStudents(parseInt(e.target.value)); // parse the selected value as an integer
     };
 
-    const classOptions = [
-        'Lớp 8 chuyên toán',
-        'Lớp 9A0 chuyên toán',
-        'Lớp 9A1 chuyên toán',
-        'Lớp 9A2 toán nâng cao'
-    ];
-
     const renderStudentFields = () => {
         let fields = [];
         for (let i = 1; i <= numStudents; i++) {
             fields.push(
-
                 <div key={i}>
                     <div className='flex items-center gap-1 mb-5'>
                         <UserIcon className="h-6 w-6 text-rose-600" />
@@ -71,7 +64,11 @@ export default function MyModal({ onClose, registerPhone }) {
                         <select id={`subject${i}`} className="mb-5 block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-300 peer" required>
                             <option value="" className='text-gray-500'>Chọn lớp học...</option>
                             {classOptions.map((option) => (
-                                <option key={option} value={option} className='text-gray-500'>{option}</option>
+                                <option key={option.type} value={option.type} disabled={option.state === 'disabled'}
+                                    className={`text-gray-500 ${option.state === 'disabled' ? 'text-gray-400' : 'text-gray-700'}`}
+                                >
+                                    {option.type}{option.state === 'disabled' ? ' (Sắp khai giảng)' : ''}
+                                </option>
                             ))}
                         </select>
                     </div>
@@ -236,11 +233,8 @@ export default function MyModal({ onClose, registerPhone }) {
                                             </button>
 
                                             <button type="button" onClick={closeModal} className="text-rose-700 hover:text-white border border-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg px-4 py-2 text-center">Huỷ đăng ký</button>
-
                                         </div>
                                     </form>
-
-
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>

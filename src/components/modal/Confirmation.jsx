@@ -4,6 +4,8 @@ import DeleteModal from "./DeleteModal";
 import { useState } from "react";
 import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 import { UserIcon, UsersIcon, ArrowRightIcon, HomeIcon } from "@heroicons/react/24/outline";
+import { useRouter } from 'next/router';
+
 
 import Link from "next/link";
 
@@ -11,6 +13,11 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
     const [showModal, setShowModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
+    const router = useRouter();
+    const handleNavigation = () => {
+        router.push('/');
+    };
 
     const handleEdit = () => {
         setShowModal(true);
@@ -72,7 +79,9 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                     </div>
                     <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
                         <dt className=" font-medium text-gray-500">Số điện thoại học sinh</dt>
-                        <dd className="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">{v.studentPhone}   </dd>
+                        <dd className="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
+                            {v.studentPhone}
+                        </dd>
                     </div>
                 </dl>
             </div>
@@ -87,13 +96,19 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                     <h1 className="text-base font-medium text-indigo-600">Cảm ơn quý phụ huynh!</h1>
 
                     {/* eslint-disable-next-line */}
-                    <a href='/' className="font-medium hidden sm:block">
+                    <a onClick={handleNavigation} className="font-medium cursor-pointer hidden sm:block">
                         <div className="flex items-center gap-2 group text-indigo-600 hover:text-indigo-500 transition ease-in-out duration-200">Trang chủ <span aria-hidden="true" className="inline-block translate-x-0 group-hover:translate-x-1 transition-transform ease-in-out duration-200"><ArrowRightIcon className="w-5 h-5" /></span></div>
                     </a>
 
-                    <Link href='/' className="sm:hidden">
+                    {/* <Link href='/' className="sm:hidden">
                         <HomeIcon className="w-6 h-6 text-indigo-600 hover:text-indigo-500" />
-                    </Link>
+                    </Link> */}
+
+                    <a onClick={handleNavigation} className="sm:hidden cursor-pointer">
+                        <HomeIcon className="w-6 h-6 text-indigo-600 hover:text-indigo-500" />
+                    </a>
+
+
                 </div>
 
                 <div className="flex items-center gap-2 mt-3">
