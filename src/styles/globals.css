@@ -57,3 +57,11 @@
         @apply bg-background text-foreground;
     }
 }
+
+@layer utilities {
+    .zalo-chat-widget {
+        @apply fixed bottom-20 right-6 !important;
+        left: auto !important;
+        z-index: 2147483644; /* You can set the z-index as needed */
+    }
+}

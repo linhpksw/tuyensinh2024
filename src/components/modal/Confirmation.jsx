@@ -172,7 +172,7 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                     </button>
                 </div>
 
-                <p className="mt-6 pr-24 text-base text-gray-500">
+                <p className="mt-6 pr-20 text-base text-gray-500">
                     Để được hỗ trợ tốt nhất, quý phụ huynh có thể nhắn trực tiếp cho trung tâm qua <a target="_blank" className="text-rose-600 font-medium hover:underline" href={info.zaloOA}>Zalo OA</a> (biểu tượng chat góc bên phải) để được hỗ trợ và nhấn &quot;<span className="text-indigo-600 font-medium">Quan tâm</span>&quot; để nhận những thông báo mới nhất trong thời gian tới.
                 </p>
 
@@ -182,19 +182,7 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                 {showDeleteModal && <DeleteModal onClose={closeDeleteModal} registerPhone={registerPhone} />}
 
             </main>
-
-            {/* Zalo Chat Widget */}
-            <div
-                className='zalo-chat-widget'
-                data-oaid='2133786749915158274'
-                data-welcome-message='Trung tâm có thể hỗ trợ được gì cho quý phụ huynh ạ?'
-                data-autopopup='2'
-                data-width='300'
-                data-height='500'></div>
-            <Script src='https://sp.zalo.me/plugins/sdk.js'></Script>
         </Container>
-
-
     )
 }
 

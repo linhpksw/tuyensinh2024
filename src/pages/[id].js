@@ -1,7 +1,9 @@
 import Confirmation from '@/components/modal/Confirmation';
 import Head from 'next/head';
 import { client } from '@/lib/mongodb';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Script from 'next/script';
+import ZaloWidget from '@/components/feature/ZaloWidget';
 
 export default function StudentDetails(props) {
     const [data, setData] = useState(props.data);
@@ -28,7 +30,13 @@ export default function StudentDetails(props) {
                 />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
+
             <Confirmation data={data} onDataUpdated={fetchData} registerPhone={registerPhone} />
+
+            <ZaloWidget
+                oaid='2133786749915158274'
+                welcomeMessage='Trung tâm có thể hỗ trợ được gì cho quý phụ huynh ạ?'
+            />
         </>
     );
 }

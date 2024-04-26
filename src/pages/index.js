@@ -5,6 +5,7 @@ import BackToTop from '@/components/layout/BackToTop';
 import { GradeTab } from '@/components/feature/GradeTab';
 import Script from 'next/script';
 import { navLinks } from '@/lib/data';
+import ZaloWidget from '@/components/feature/ZaloWidget';
 
 export default function Home() {
     return (
@@ -24,15 +25,10 @@ export default function Home() {
 
             <GradeTab />
 
-            {/* Zalo Chat Widget */}
-            <div
-                className='zalo-chat-widget'
-                data-oaid='2133786749915158274'
-                data-welcome-message='Trung tâm có thể hỗ trợ được gì cho quý phụ huynh ạ?'
-                data-autopopup='2'
-                data-width='300'
-                data-height='500'></div>
-            <Script src='https://sp.zalo.me/plugins/sdk.js'></Script>
+            <ZaloWidget
+                oaid='2133786749915158274'
+                welcomeMessage='Trung tâm có thể hỗ trợ được gì cho quý phụ huynh ạ?'
+            />
 
             <BackToTop />
 
