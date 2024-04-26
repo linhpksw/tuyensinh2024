@@ -52,6 +52,7 @@ export default function StudentDetails({ initialData }) {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
 
+            {console.log('Data:', data)}
             <Confirmation data={data} onDataUpdated={setData} registerPhone={registerPhone} />
 
             <ZaloWidget

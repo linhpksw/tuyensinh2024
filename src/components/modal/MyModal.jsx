@@ -5,8 +5,6 @@ import { useRouter } from 'next/router';
 import { customAlphabet } from 'nanoid';
 import { classOptions } from '@/lib/data';
 
-
-
 export default function MyModal({ onClose, registerPhone }) {
     const router = useRouter();
 

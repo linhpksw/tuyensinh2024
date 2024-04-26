@@ -3,6 +3,7 @@ import { useState, Fragment } from 'react'
 import { UserIcon, UsersIcon } from '@heroicons/react/24/outline'
 import { classOptions } from '@/lib/data';
 
+
 export default function EditModal({ data, onDataUpdated, registerPhone, onClose }) {
     const [isOpen, setIsOpen] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +61,7 @@ export default function EditModal({ data, onDataUpdated, registerPhone, onClose 
                     console.log("Failed to send confirmation email!");
                 }
                 closeModal();
-                onDataUpdated(registerPhone);
+                onDataUpdated(data);
             }
         } catch (error) {
             console.log(error);
@@ -109,14 +110,6 @@ export default function EditModal({ data, onDataUpdated, registerPhone, onClose 
             throw new Error('An error occurred while adding new submission');
         }
     };
-
-
-    const classOptions = [
-        'Lớp 8 chuyên toán',
-        'Lớp 9A0 chuyên toán',
-        'Lớp 9A1 chuyên toán',
-        'Lớp 9A2 toán nâng cao'
-    ];
 
     const renderStudentFields = () => {
         let fields = [];
@@ -175,8 +168,13 @@ export default function EditModal({ data, onDataUpdated, registerPhone, onClose 
                             defaultValue={student.subject || ''}
                             id={`subject${i}`} className="mb-5 block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-300 peer" required>
                             <option value="" className='text-gray-500'>Chọn lớp học...</option>
+
                             {classOptions.map((option) => (
-                                <option key={option} value={option} className=' text-gray-500'>{option}</option>
+                                <option key={option.type} value={option.type} disabled={option.state === 'disabled'}
+                                    className={`text-gray-500 ${option.state === 'disabled' ? 'text-gray-400' : 'text-gray-700'}`}
+                                >
+                                    {option.type}{option.state === 'disabled' ? ' (Sắp khai giảng)' : ''}
+                                </option>
                             ))}
                         </select>
                     </div>
