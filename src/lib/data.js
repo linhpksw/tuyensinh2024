@@ -158,7 +158,7 @@ export const timetable = {
         {
             no: 1,
             grade: 'LỚP 8 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 14/7 (15h - 16h45) - Khai giảng ngày Thứ Tư 17/7',
+            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 14/7 (15h - 16h45) - Khai giảng ngày Thứ năm 18/7',
             child: [
                 {
                     subject: 'Hình học',
@@ -177,7 +177,7 @@ export const timetable = {
         {
             no: 2,
             grade: 'LỚP 9A0 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 16h45) - Khai giảng ngày Thứ Bảy 8/6',
+            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 16h45) - Khai giảng ngày Thứ ba 4/6',
             child: [
                 {
                     subject: 'Hình học',
@@ -280,12 +280,12 @@ export const teacher = {
         {
             name: 'Thầy Đinh Hữu Lâm',
             src: thayLam,
-            bio: 'Cựu học sinh chuyên toán khối phổ thông chuyên toán Sư Phạm; Cựu sinh viên lớp chất lượng cao K50 trường ĐHSP Hà Nội; Thạc sĩ chuyên ngành hình học trường ĐH KHTN; giải nhất Giáo viên giỏi thành phố Hà Nội 2014; tổ trưởng tổ Toán trường THPT chuyên Nguyễn Huệ, chuyên viên môn toán khối THPT Sở GDĐT Hà Nội, bồi dưỡng nhiều học sinh giỏi quốc gia.',
+            bio: 'Cựu học sinh chuyên toán khối phổ thông chuyên toán Sư Phạm; Cựu sinh viên lớp chất lượng cao K50 trường ĐHSP Hà Nội; Thạc sĩ chuyên ngành hình học trường ĐH KHTN; giải nhất Giáo viên giỏi thành phố Hà Nội 2014; Hiệu phó trường Chuyên Nguyễn Huệ.',
         },
         {
             name: 'Thầy Phùng Văn Mạnh',
             src: thayManh,
-            bio: 'Cựu học sinh chuyên toán trường chuyên Hưng Yên, giải NHÌ quốc gia môn toán; lớp trưởng lớp chất lượng cao K50 trường ĐHSP Hà Nội; học bổng toàn phần làm tiến sĩ khoa học tại Pháp; giảng viên tổ giải tích trường ĐHSP Hà Nội, năm 2017 thầy được vinh dự phong chức danh PGS ở tuổi 35.',
+            bio: 'Cựu học sinh chuyên toán trường chuyên Hưng Yên, giải NHÌ quốc gia môn toán; lớp trưởng lớp chất lượng cao K50 trường ĐHSP Hà Nội; học bổng toàn phần làm tiến sĩ khoa học tại Pháp; giảng viên tổ giải tích trường ĐHSP Hà Nội, năm 2017 thầy được vinh dự phong chức danh PGS ở tuổi 35. Nhiều năm thầy đã được mời về trường Chuyên Nguyễn Huệ dạy bồi dưỡng đội tuyển HSG Quốc Gia.',
         },
         {
             name: 'Cô Đặng Thị Hường',
