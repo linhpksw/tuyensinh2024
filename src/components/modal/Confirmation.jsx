@@ -7,12 +7,7 @@ import { UserIcon, UsersIcon, ArrowRightIcon, HomeIcon } from "@heroicons/react/
 import { useRouter } from 'next/router';
 import { info } from '@/lib/data';
 
-import zaloQR from '../../../public/img/logo/zalo-qr.jpg';
-
-
 import Link from "next/link";
-import Script from "next/script";
-import Image from "next/image";
 
 const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
     const [showModal, setShowModal] = useState(false);

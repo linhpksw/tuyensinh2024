@@ -26,16 +26,21 @@ export default function StudentDetails({ initialData }) {
 
     const registerPhone = initialData[0]?.registerPhone;
 
-    const fetchData = async (registerPhone) => {
+    const fetchData = async () => {
         try {
             const response = await fetch(`/api/get?registerPhone=${registerPhone}`);
+            if (!response.ok) throw new Error('Failed to fetch');
             const fetchedData = await response.json();
+            if (fetchedData.length === 0) {
+                // Handle case where no data is found
+                console.log('No student data found for this phone number.');
+            }
             setData(fetchedData);
         } catch (error) {
-            console.err(error);
+            console.error('Error fetching data:', error.message);
+            setData([]); // Ensure state is clear if there's an error
         }
     };
-
     return (
         <>
             <Head>
@@ -69,6 +74,13 @@ export async function getServerSideProps(context) {
 
         const query = { registerPhone: context.query.id };
         students = await student.find(query, { projection: { _id: 0 } }).toArray();
+
+        if (students.length === 0) {
+            // No students found, let Next.js handle the 404
+            return {
+                notFound: true, // This will trigger Next.js to show the default 404 page
+            };
+        }
     }
 
     return {
