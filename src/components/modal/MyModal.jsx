@@ -81,6 +81,34 @@ export default function MyModal({ onClose, registerPhone }) {
 
     const [isLoading, setIsLoading] = useState(false);
 
+    useEffect(() => {
+        // This function will be called to reload the Zalo widget.
+        const reloadZaloWidget = () => {
+            if (window.ZaloSocialSDK) {
+                window.ZaloSocialSDK.reload();
+            } else {
+                // If the SDK has not been initialized, let's wait for it
+                window.onload = function () {
+                    if (window.ZaloSocialSDK) {
+                        window.ZaloSocialSDK.reload();
+                    }
+                };
+            }
+        };
+
+        // Call the reload function whenever the router pathname changes
+        reloadZaloWidget();
+
+        // Listen for route change events to re-initialize the widget
+        router.events.on('routeChangeComplete', reloadZaloWidget);
+
+        // Cleanup the event listener when the component is unmounted
+        return () => {
+            router.events.off('routeChangeComplete', reloadZaloWidget);
+        };
+    }, [router.events]);
+
+
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
