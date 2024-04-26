@@ -2,19 +2,35 @@ import Confirmation from '@/components/modal/Confirmation';
 import Head from 'next/head';
 import { client } from '@/lib/mongodb';
 import { useEffect, useState } from 'react';
-import Script from 'next/script';
 import ZaloWidget from '@/components/feature/ZaloWidget';
+import Cookies from 'js-cookie';
 
-export default function StudentDetails(props) {
-    const [data, setData] = useState(props.data);
+export default function StudentDetails({ initialData }) {
+    const [data, setData] = useState(initialData);
 
-    const registerPhone = data[0]?.registerPhone;
+    useEffect(() => {
+        // Attempt to fetch data from cookies
+        const fetchDataFromCookies = () => {
+            const studentData = Cookies.get('studentData');
+            if (studentData) {
+                setData(JSON.parse(studentData));
+                Cookies.remove('studentData'); // Clear the cookie immediately after reading
+            } else if (initialData.length === 0) {
+                // If no data in cookies, fetch data from the API
+                fetchData();
+            }
+        };
+
+        fetchDataFromCookies();
+    }, []);
+
+    const registerPhone = initialData[0]?.registerPhone;
 
     const fetchData = async (registerPhone) => {
         try {
             const response = await fetch(`/api/get?registerPhone=${registerPhone}`);
-            const data = await response.json();
-            setData(data);
+            const fetchedData = await response.json();
+            setData(fetchedData);
         } catch (error) {
             console.err(error);
         }
@@ -31,7 +47,7 @@ export default function StudentDetails(props) {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
 
-            <Confirmation data={data} onDataUpdated={fetchData} registerPhone={registerPhone} />
+            <Confirmation data={data} onDataUpdated={setData} registerPhone={registerPhone} />
 
             <ZaloWidget
                 oaid='2133786749915158274'
@@ -42,38 +58,22 @@ export default function StudentDetails(props) {
 }
 
 export async function getServerSideProps(context) {
-    const { id } = context.query; // Get the ID from the URL path
-
-    // Fetch the student data from the database based on the ID
-    try {
+    let students;
+    if (context.query.students) {
+        // If students data is passed in the query, parse it and use it directly
+        students = JSON.parse(context.query.students);
+    } else {
+        // Perform database query to fetch students
         const database = client.db(process.env.DB_NAME);
         const student = database.collection(process.env.COLLECTION_NAME);
 
-        const query = { registerPhone: id };
-        const options = {
-            projection: { _id: 0 },
-        };
-
-        const cursor = student.find(query, options);
-
-        if ((await student.countDocuments(query)) === 0) {
-            console.log('No documents found!');
-        }
-
-        let docs = [];
-
-        for await (const doc of cursor) {
-            docs.push(doc);
-        }
-
-        // Pass the student data as props to the StudentDetails component
-        return {
-            props: {
-                data: docs,
-            },
-        };
-    } catch (err) {
-        console.error(err);
-    } finally {
+        const query = { registerPhone: context.query.id };
+        students = await student.find(query, { projection: { _id: 0 } }).toArray();
     }
+
+    return {
+        props: {
+            initialData: students,
+        },
+    };
 }

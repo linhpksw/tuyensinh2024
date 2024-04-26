@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import MyModal from '../modal/MyModal';
 import ShowImage from './ShowImage';
+import Cookies from 'js-cookie';
+
 
 const Hero = ({ data, grade }) => {
     const [isCorrect, setIsCorrect] = useState(true);
@@ -23,7 +25,7 @@ const Hero = ({ data, grade }) => {
         });
 
         const data = await response.json();
-        return data.exists;
+        return data; // Return both existence and students
     }
 
     const handleForm = async (e) => {
@@ -35,11 +37,12 @@ const Hero = ({ data, grade }) => {
 
         if (regexPhoneNumber.test(inputRegisterPhone)) {
             setIsLoading(true);
-            const exists = await checkIfPhoneExists(inputRegisterPhone);
+            const { exists, students } = await checkIfPhoneExists(inputRegisterPhone);
 
             if (exists) {
-                router.push(`/${inputRegisterPhone}`);
-
+                Cookies.set('studentData', JSON.stringify(students), { expires: 1 / 288 });
+                // 5 minutes
+                router.push({ pathname: `/${inputRegisterPhone}` });
             } else {
                 setIsCorrect(true);
                 setShowModal(true);

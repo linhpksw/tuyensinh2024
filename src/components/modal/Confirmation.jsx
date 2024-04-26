@@ -100,20 +100,13 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                 <div className="flex justify-between">
                     <h1 className="text-base font-medium text-indigo-600">Cảm ơn quý phụ huynh!</h1>
 
-                    {/* eslint-disable-next-line */}
                     <a onClick={handleNavigation} className="font-medium cursor-pointer hidden sm:block">
                         <div className="flex items-center gap-2 group text-indigo-600 hover:text-indigo-500 transition ease-in-out duration-200">Trang chủ <span aria-hidden="true" className="inline-block translate-x-0 group-hover:translate-x-1 transition-transform ease-in-out duration-200"><ArrowRightIcon className="w-5 h-5" /></span></div>
                     </a>
 
-                    {/* <Link href='/' className="sm:hidden">
-                        <HomeIcon className="w-6 h-6 text-indigo-600 hover:text-indigo-500" />
-                    </Link> */}
-
                     <a onClick={handleNavigation} className="sm:hidden cursor-pointer">
                         <HomeIcon className="w-6 h-6 text-indigo-600 hover:text-indigo-500" />
                     </a>
-
-
                 </div>
 
                 <div className="flex items-center gap-2 mt-3">
@@ -121,7 +114,7 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                     <CheckBadgeIcon className="w-8 h-8 lg:w-10 lg:h-10 text-emerald-500" />
                 </div>
 
-                <p className="mt-3 text-base text-gray-500">Đơn đăng kí học cho học sinh <span className="text-rose-600 font-medium">{data.length === 1
+                <p className="mt-3 text-base text-gray-500">Đơn đăng kí học cho học sinh <span className="text-indigo-600 font-medium text-nowrap">{data.length === 1
                     ? data[0].studentName
                     : data.map((v, i) => {
                         if (i === data.length - 1) {
@@ -131,7 +124,7 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                         } else {
                             return ', ' + v.studentName;
                         }
-                    })}</span> đã được trung tâm xác nhận và gửi về email <Link className="text-rose-600 font-medium" target="_blank" href={'https://mail.google.com/'}>{data[0].email}</Link> của quý phụ huynh.</p>
+                    })}</span> đã được trung tâm xác nhận và gửi về email <Link className="text-indigo-600 font-medium" target="_blank" href={'https://mail.google.com/'}>{data[0].email}</Link> của quý phụ huynh.</p>
 
                 <div className="mt-6">
                     {listStudents}
