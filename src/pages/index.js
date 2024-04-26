@@ -3,7 +3,6 @@ import Navbar from '@/components/layout/NavBar';
 import Head from 'next/head';
 import BackToTop from '@/components/layout/BackToTop';
 import { GradeTab } from '@/components/feature/GradeTab';
-import Script from 'next/script';
 import { navLinks } from '@/lib/data';
 import ZaloWidget from '@/components/feature/ZaloWidget';
 

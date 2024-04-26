@@ -134,7 +134,7 @@ function generateHtmlContent(data) {
     <img
       src="${info.zaloOAQR}"
       alt="Zalo OA Câu lạc bộ Toán Ánh Sáng"
-      style="width: 128px; height: 195px; margin-top: 20px; margin-bottom: 20px;"
+      style="width: w56px; height: 390px; margin-top: 20px; margin-bottom: 20px;"
     />
   </a>
 
