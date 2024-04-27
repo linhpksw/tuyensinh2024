@@ -147,9 +147,9 @@ export const intro = {
 };
 
 export const classInfo = {
-    'Lớp 8 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 14/7 (15h - 16h45) - Khai giảng ngày Thứ Tư 17/7.',
-    'Lớp 9A0 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 16h45) - Khai giảng ngày Thứ Bảy 8/6.',
-    'Lớp 9A1 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 16h45) - Khai giảng ngày Thứ Bảy 8/6',
+    'Lớp 8 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 14/7 (15h - 17h) - Khai giảng ngày Thứ Năm 18/7.',
+    'Lớp 9A0 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 17h) - Khai giảng ngày Thứ Ba 4/6.',
+    'Lớp 9A1 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 17h) - Khai giảng ngày Thứ Bảy 8/6',
     'Lớp 9A2 toán nâng cao': 'Không kiểm tra xếp lớp đầu vào - Khai giảng ngày Chủ Nhật 9/6',
 };
 
@@ -158,7 +158,7 @@ export const timetable = {
         {
             no: 1,
             grade: 'LỚP 8 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 14/7 (15h - 16h45) - Khai giảng ngày Thứ năm 18/7',
+            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 14/7 (15h - 17h) - Khai giảng ngày Thứ Năm 18/7',
             child: [
                 {
                     subject: 'Hình học',
@@ -177,7 +177,7 @@ export const timetable = {
         {
             no: 2,
             grade: 'LỚP 9A0 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 16h45) - Khai giảng ngày Thứ ba 4/6',
+            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 17h) - Khai giảng ngày Thứ Ba 4/6',
             child: [
                 {
                     subject: 'Hình học',
@@ -196,7 +196,7 @@ export const timetable = {
         {
             no: 3,
             grade: 'LỚP 9A1 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 16h45) - Khai giảng ngày Thứ Bảy 8/6',
+            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 17h) - Khai giảng ngày Thứ Bảy 8/6',
             child: [
                 {
                     subject: 'Hình học',
