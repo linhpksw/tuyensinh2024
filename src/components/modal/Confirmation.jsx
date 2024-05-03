@@ -119,7 +119,7 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                         } else {
                             return ', ' + v.studentName;
                         }
-                    })}</span> đã được trung tâm xác nhận và gửi về email <Link className="text-indigo-600 font-medium" target="_blank" href={'https://mail.google.com/'}>{data[0].email}</Link> của quý phụ huynh.</p>
+                    })}</span> đã được trung tâm xác nhận và gửi về email <Link className="text-indigo-600 font-medium" target="_blank" href={'https://mail.google.com/'}>{data[0].email}</Link> cùng với tài khoản Zalo <span className="text-indigo-600 font-medium text-nowrap">{data[0].backupPhone}</span> đã đăng ký trong phiếu của quý phụ huynh.</p>
 
                 <div className="mt-6">
                     {listStudents}
@@ -138,7 +138,7 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                                 <dd className="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">{data[0].email}</dd>
                             </div>
                             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-                                <dt className="font-medium text-gray-500">Số điện thoại dự phòng</dt>
+                                <dt className="font-medium text-gray-500">Số điện thoại đăng ký Zalo</dt>
                                 <dd className="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">{data[0].backupPhone}</dd>
                             </div>
 
