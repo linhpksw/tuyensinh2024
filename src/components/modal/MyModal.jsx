@@ -128,6 +128,8 @@ export default function MyModal({ onClose, registerPhone }) {
             const result = await response.json();
 
             if (result.status == 'success') {
+                router.push(`/${registerPhone}`);
+
                 const emailResponse = await fetch("/api/send-email", {
                     method: "POST",
                     headers: {
@@ -141,8 +143,6 @@ export default function MyModal({ onClose, registerPhone }) {
                 } else {
                     console.log("Failed to send confirmation email!");
                 }
-
-                router.push(`/${registerPhone}`);
             } else {
                 alert('Đã có lỗi xảy ra. Vui lòng thử lại sau!');
             }
