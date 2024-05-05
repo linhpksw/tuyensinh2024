@@ -5,20 +5,20 @@ const INFO = {
     templateId: '329956',
     subject: {
         'Lớp 8 chuyên toán': {
-            examDate: '15:00 2/6/2024',
-            enrollDate: '18/7/2024',
+            examDate: '15:00 02/06/2024',
+            enrollDate: '18/07/2024',
         },
         'Lớp 9A0 chuyên toán': {
-            examDate: '15:00 2/6/2024',
-            enrollDate: '4/6/2024',
+            examDate: '15:00 02/06/2024',
+            enrollDate: '04/06/2024',
         },
         'Lớp 9A1 chuyên toán': {
-            examDate: '15:00 2/6/2024',
-            enrollDate: '8/6/2024',
+            examDate: '15:00 02/06/2024',
+            enrollDate: '08/06/2024',
         },
         'Lớp 9A2 toán nâng cao': {
-            examDate: '9/6/2024',
-            enrollDate: '9/6/2024',
+            examDate: '09/06/2024',
+            enrollDate: '09/06/2024',
         },
     },
 };
