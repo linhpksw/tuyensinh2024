@@ -69,9 +69,10 @@ async function sendMessage(accessToken, data) {
 
     // Process each student and send messages
     const sendPromises = data.map(async (student) => {
-        const { studentName, subject, registerPhone, backupPhone, studentId } = student;
+        const { studentName, subject, registerPhone, backupPhone, time } = student;
 
         let phone = '84' + backupPhone.slice(1);
+        const formatTime = new Date(time).toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
         const content = {
             phone: phone,
             template_id: INFO.templateId,
@@ -81,7 +82,7 @@ async function sendMessage(accessToken, data) {
                 register_phone: registerPhone,
                 enroll_date: INFO.subject[subject].enrollDate,
                 exam_date: INFO.subject[subject].examDate,
-                register_id: studentId,
+                register_id: formatTime,
             },
         };
 
