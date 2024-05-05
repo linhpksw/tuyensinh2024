@@ -130,7 +130,7 @@ export default function MyModal({ onClose, registerPhone }) {
             if (result.status == 'success') {
                 router.push(`/${registerPhone}`);
 
-                const emailResponse = await fetch("/api/send-email", {
+                await fetch("/api/send-zns", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -138,11 +138,14 @@ export default function MyModal({ onClose, registerPhone }) {
                     body: JSON.stringify({ data }),
                 });
 
-                if (emailResponse.ok) {
-                    console.log("Confirmation email sent!");
-                } else {
-                    console.log("Failed to send confirmation email!");
-                }
+                await fetch("/api/send-email", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ data }),
+                });
+
             } else {
                 alert('Đã có lỗi xảy ra. Vui lòng thử lại sau!');
             }

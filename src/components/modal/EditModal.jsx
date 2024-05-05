@@ -47,7 +47,10 @@ export default function EditModal({ data, onDataUpdated, registerPhone, onClose 
             const addResponse = await addNewData(data);
 
             if (addResponse.status === 'success') {
-                const emailResponse = await fetch("/api/send-email", {
+                closeModal();
+                onDataUpdated(data);
+
+                await fetch("/api/send-zns", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -55,13 +58,13 @@ export default function EditModal({ data, onDataUpdated, registerPhone, onClose 
                     body: JSON.stringify({ data }),
                 });
 
-                if (emailResponse.ok) {
-                    console.log("Confirmation email sent!");
-                } else {
-                    console.log("Failed to send confirmation email!");
-                }
-                closeModal();
-                onDataUpdated(data);
+                await fetch("/api/send-email", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ data }),
+                });
             }
         } catch (error) {
             console.log(error);

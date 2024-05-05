@@ -55,9 +55,9 @@ const Navbar = ({ data }) => {
                                     leaveTo='transform scale-95 opacity-0'>
                                     <Disclosure.Panel className='flex flex-wrap w-full mt-5 lg:hidden'>
                                         <>
-                                            {data.map((item) => (
+                                            {data.map((item, index) => (
                                                 <LinkScroll
-                                                    key={item.mobile}
+                                                    key={index}
                                                     activeClass='active'
                                                     to={item.href}
                                                     spy={true}
@@ -81,9 +81,9 @@ const Navbar = ({ data }) => {
                 {/* menu  */}
                 <div className='hidden text-center lg:flex lg:items-center'>
                     <ul className='items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex'>
-                        {data.map((menu) => (
+                        {data.map((menu, index) => (
                             <LinkScroll
-                                key={menu.desktop}
+                                key={index}
                                 activeClass='active'
                                 to={menu.href}
                                 spy={true}
