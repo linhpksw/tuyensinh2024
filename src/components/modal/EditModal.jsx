@@ -8,6 +8,14 @@ export default function EditModal({ data, onDataUpdated, registerPhone, onClose 
     const [isOpen, setIsOpen] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
+    function formatName(name) {
+        return name
+            .trim()
+            .toLowerCase()
+            .split(' ')
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
 
     function closeModal() {
         onClose();
@@ -26,7 +34,7 @@ export default function EditModal({ data, onDataUpdated, registerPhone, onClose 
                 studentId: v.studentId,
                 time: new Date(),
                 registerPhone: v.registerPhone,
-                studentName: e.target[`studentName${i + 1}`].value,
+                studentName: formatName(e.target[`studentName${i + 1}`].value),
                 studentPhone: e.target[`studentPhone${i + 1}`].value,
                 school: e.target[`school${i + 1}`].value,
                 year: e.target[`year${i + 1}`].value,

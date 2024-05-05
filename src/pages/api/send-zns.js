@@ -67,6 +67,15 @@ async function sendMessage(accessToken, data) {
         return response.json();
     }
 
+    function formatName(name) {
+        return name
+            .trim()
+            .toLowerCase()
+            .split(' ')
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
+
     // Process each student and send messages
     const sendPromises = data.map(async (student) => {
         const { studentName, subject, registerPhone, backupPhone, time } = student;

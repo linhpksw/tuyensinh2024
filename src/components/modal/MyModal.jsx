@@ -21,6 +21,15 @@ export default function MyModal({ onClose, registerPhone }) {
         setNumStudents(parseInt(e.target.value)); // parse the selected value as an integer
     };
 
+    function formatName(name) {
+        return name
+            .trim()
+            .toLowerCase()
+            .split(' ')
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
+
     const renderStudentFields = () => {
         let fields = [];
         for (let i = 1; i <= numStudents; i++) {
@@ -104,7 +113,7 @@ export default function MyModal({ onClose, registerPhone }) {
                     studentId: nanoid(),
                     time: new Date(),
                     registerPhone: registerPhone,
-                    studentName: studentName.value,
+                    studentName: formatName(studentName.value),
                     studentPhone: studentPhone.value,
                     school: school.value,
                     year: year.value,
