@@ -26,10 +26,10 @@ export const classOptions = [
 ];
 
 export const info = {
-    address: 'Trường THPT DL Lê Hồng Phong - số 27 Tô Hiệu, Hà Đông',
+    address: 'Ngã 4 SVĐ Hà Đông, số 27 Tô Hiệu',
     displayPhone: '036 286 0970',
     phone: '0362860970',
-    googleMap: 'https://goo.gl/maps/proqtNoL24gvuNxy9',
+    googleMap: 'https://maps.app.goo.gl/G7oHiG2tM1njeCzu6',
     logo: 'https://tuyensinh.clbanhsang.com/img/logo/logo-alter.png',
     zaloOA: 'https://zalo.me/clbanhsang',
     zaloOAQR: 'https://tuyensinh.clbanhsang.com/img/logo/zalo-qr.jpg',
