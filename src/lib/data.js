@@ -237,16 +237,16 @@ export const timetable = {
         {
             no: 1,
             grade: 'LỚP 10A0 - VẬN DỤNG CAO',
-            opening: 'Khai giảng vào...',
+            opening: 'Khai giảng vào 8h15 sáng Chủ nhật 4/8 tại phòng 204',
             child: [
                 {
                     subject: 'Hình học',
-                    time: '',
+                    time: 'Chủ nhật từ 8h15 - 10h',
                     teacher: 'Thầy Lâm',
                 },
                 {
                     subject: 'Đại số',
-                    time: '',
+                    time: 'Thứ 2 từ 19h45 - 21h30',
                     teacher: 'Thầy Hưng',
                 },
             ],
@@ -256,16 +256,16 @@ export const timetable = {
         {
             no: 2,
             grade: 'LỚP 10A1 - NÂNG CAO',
-            opening: 'Khai giảng vào...',
+            opening: 'Khai giảng vào 8h15 sáng Chủ nhật 4/8 tại phòng 305',
             child: [
                 {
                     subject: 'Hình học',
-                    time: '',
+                    time: 'Chủ nhật từ 8h15 - 10h',
                     teacher: 'Cô Hường',
                 },
                 {
                     subject: 'Đại số',
-                    time: '',
+                    time: 'Thứ 2 từ 19h45 - 21h30',
                     teacher: 'Thầy Phương',
                 },
             ],
