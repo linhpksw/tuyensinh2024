@@ -17,12 +17,12 @@ import thongTinTuyenSinh from '../../public/img/fb/thongTinTuyenSinh.png';
 import kinhNghiemLuyenThi from '../../public/img/fb/kinhNghiemLuyenThi.png';
 
 export const classOptions = [
+    { type: 'Lớp 10A0 vận dụng cao', state: 'enabled' },
+    { type: 'Lớp 10A1 nâng cao', state: 'enabled' },
     { type: 'Lớp 8 chuyên toán', state: 'enabled' },
     { type: 'Lớp 9A0 chuyên toán', state: 'enabled' },
     { type: 'Lớp 9A1 chuyên toán', state: 'enabled' },
     { type: 'Lớp 9A2 toán nâng cao', state: 'enabled' },
-    { type: 'Lớp 10A0 - Vận dụng cao', state: 'disabled' },
-    { type: 'Lớp 10A1 - Nâng cao', state: 'disabled' },
 ];
 
 export const info = {
@@ -152,6 +152,8 @@ export const classInfo = {
     'Lớp 9A0 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 17h) - Khai giảng ngày Thứ Ba 4/6.',
     'Lớp 9A1 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 17h) - Khai giảng ngày Thứ Bảy 8/6',
     'Lớp 9A2 toán nâng cao': 'Không kiểm tra xếp lớp đầu vào - Khai giảng ngày Chủ Nhật 9/6',
+    'Lớp 10A0 vận dụng cao': 'Khai giảng vào 8h15 sáng Chủ nhật 4/8 tại phòng 204',
+    'Lớp 10A1 nâng cao': 'Khai giảng vào 8h15 sáng Chủ nhật 4/8 tại phòng 305',
 };
 
 export const timetable = {
@@ -298,7 +300,7 @@ export const teacher = {
         {
             name: 'Thầy Đinh Hữu Lâm',
             src: thayLam,
-            bio: 'Cựu học sinh chuyên toán khối phổ thông chuyên toán Sư Phạm; Cựu sinh viên lớp chất lượng cao K50 trường ĐHSP Hà Nội; Thạc sĩ chuyên ngành hình học trường ĐH KHTN; giải nhất Giáo viên giỏi thành phố Hà Nội 2014; Hiệu phó trường THPT chuyên Nguyễn Huệ, chuyên viên môn toán khối THPT Sở GDĐT Hà Nội, bồi dưỡng nhiều học sinh giỏi quốc gia.',
+            bio: 'Cựu học sinh chuyên toán khối phổ thông chuyên toán Sư Phạm; Cựu sinh viên lớp chất lượng cao K50 trường ĐHSP Hà Nội; Thạc sĩ chuyên ngành hình học trường ĐH KHTN; giải nhất Giáo viên giỏi thành phố Hà Nội 2014; Hiệu phó trường THPT chuyên Nguyễn Huệ, bồi dưỡng nhiều học sinh giỏi quốc gia.',
         },
         {
             name: 'Thầy Nghiêm Ngọc Phương',

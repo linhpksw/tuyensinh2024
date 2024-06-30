@@ -20,6 +20,14 @@ const INFO = {
             examDate: '09/06/2024',
             enrollDate: '09/06/2024',
         },
+        'Lớp 10A0 vận dụng cao': {
+            examDate: '04/08/2024',
+            enrollDate: '04/08/2024',
+        },
+        'Lớp 10A1 nâng cao': {
+            examDate: '04/08/2024',
+            enrollDate: '04/08/2024',
+        },
     },
 };
 
