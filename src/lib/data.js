@@ -26,7 +26,7 @@ export const classOptions = [
 ];
 
 export const info = {
-    address: 'Ngã 4 SVĐ Hà Đông, số 27 Tô Hiệu',
+    address: 'Trung Tâm Đào Tạo Và Nghiên Cứu Khoa Học, số 27 Tô Hiệu',
     displayPhone: '036 286 0970',
     phone: '0362860970',
     googleMap: 'https://maps.app.goo.gl/G7oHiG2tM1njeCzu6',
