@@ -143,7 +143,7 @@ export const accordianQA = {
 
 export const intro = {
     c2: 'Kính gửi các quý vị phụ huynh học sinh và các con! Năm học 2024 - 2025, CLB Ánh Sáng tổ chức: 1 lớp Toán 8 ôn thi vào chuyên toán, 2 lớp 9 ôn thi vào chuyên toán và 1 lớp 9 nâng cao ôn thi toán điều kiện vào 10, có kiểm tra đầu vào để xếp lớp. Thông tin chi tiết phụ huynh xem ở phía dưới.',
-    c3: 'Kính gửi các quý vị phụ huynh học sinh và các con! Năm học 2024 - 2025, CLB Ánh Sáng tổ chức 2 lớp Toán 10 ôn thi THPTQG. Lớp 10A0 - Lớp vận dụng cao, dành cho các học sinh lớp chuyên toán lý hóa các trường chuyên, lớp chọn khối A và A1 trường LTV, LQĐ với mục tiêu điểm 9-10 môn toán thi đại học. Điều kiện xét tuyển đầu vào của lớp là HS lớp chuyên toán lý hoá các trường chuyên hoặc HS trường thường có điểm thi vào 10 môn toán từ 9,5 trở lên. Lớp 10A1 - Lớp toán nâng cao, dành cho các học sinh khá giỏi các trường THPT, với mục tiêu điểm 9 môn toán thi đại học. Điều kiện xét tuyển đầu vào của lớp là điểm thi vào 10 môn toán từ 8,5 trở lên.',
+    c3: 'Kính gửi các quý vị phụ huynh học sinh và các con! Năm học 2024 - 2025, CLB Ánh Sáng tổ chức 2 lớp Toán 10 ôn thi THPTQG. Lớp 10A0 - Lớp vận dụng cao, dành cho các học sinh lớp chuyên toán lý hóa các trường chuyên, lớp chọn khối A và A1 trường LTV, LQĐ với mục tiêu điểm 9-10 môn toán thi đại học. Điều kiện xét tuyển đầu vào của lớp là HS lớp chuyên toán lý hoá các trường chuyên hoặc HS trường thường có điểm thi vào 10 môn toán từ 9 trở lên. Lớp 10A1 - Lớp toán nâng cao, dành cho các học sinh khá giỏi các trường THPT, với mục tiêu điểm 9 môn toán thi đại học. Điều kiện xét tuyển đầu vào của lớp là điểm thi vào 10 môn toán từ 8 trở lên.',
 };
 
 export const classInfo = {
