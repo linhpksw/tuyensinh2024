@@ -26,14 +26,17 @@ export const classOptions = [
 ];
 
 export const info = {
-    address: 'Trung Tâm Đào Tạo Và Nghiên Cứu Khoa Học, số 27 Tô Hiệu',
+    address: 'Trung Tâm Đào Tạo Và Nghiên Cứu Khoa Học, số 27 Tô Hiệu, P.Nguyễn Trãi, Hà Đông, Hà Nội',
     displayPhone: '036 286 0970',
     phone: '0362860970',
     googleMap: 'https://maps.app.goo.gl/G7oHiG2tM1njeCzu6',
     logo: 'https://tuyensinh.clbanhsang.com/img/logo/logo-alter.png',
     zaloOA: 'https://zalo.me/clbanhsang',
+    zaloOAName: 'Trung tâm Toán Câu lạc bộ Ánh Sáng',
     zaloOAQR: 'https://tuyensinh.clbanhsang.com/img/logo/zalo-qr.jpg',
     zaloOAQRPath: '/../../public/img/logo/zalo-qr.jpg',
+    groupFB: 'https://www.facebook.com/groups/clbanhsang',
+    groupFBName: 'CLB Ánh Sáng',
 };
 
 export const navLinks = [

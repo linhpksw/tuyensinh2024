@@ -172,14 +172,7 @@ function generateHtmlContent(data) {
   </a>
 
   <p>
-    <b style="margin-top: 20px; color: #4b5563;">Zalo OA:</b>
-    <a href="${info.zaloOA}"
-      >Trung tâm Toán Câu lạc bộ Ánh Sáng</a
-    >
-  </p>
-
-  <p>
-    <b style="color: #4b5563;">Địa chỉ:</b>
+    <b style="margin-top: 20px; color: #4b5563;">Địa chỉ:</b>
     <a href="${info.googleMap}"
       >${info.address}</a
     >
@@ -187,6 +180,18 @@ function generateHtmlContent(data) {
   <p>
     <b style="color: #4b5563;">Cô Hường phụ trách: </b>
     <a href="tel:${info.phone}">${info.displayPhone}</a>
+  </p>
+  <p>
+    <b style="color: #4b5563;">Zalo OA:</b>
+    <a href="${info.zaloOA}"
+      >${info.zaloOAName}</a
+    >
+  </p>
+  <p>
+    <b style="color: #4b5563;">Nhóm FB hỗ trợ học tập:</b>
+    <a href="${info.groupFB}"
+      >${info.groupFBName}</a
+    >
   </p>
 </body>
   `;

@@ -61,7 +61,7 @@ export const GradeTab = () => {
                     <SectionTitle
                         id='info'
                         pretitle='Thông tin lớp học'
-                        title='Địa chỉ lớp học và số điện thoại liên hệ'>
+                        title='Kết nối với chúng tôi ngay tại đây'>
                     </SectionTitle>
 
                     <Info data={info} />

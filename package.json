@@ -21,6 +21,7 @@
         "clsx": "^2.1.0",
         "embla-carousel-autoplay": "^8.0.2",
         "embla-carousel-react": "^8.0.2",
+        "heroicons": "^2.1.5",
         "js-cookie": "^3.0.5",
         "lucide-react": "^0.372.0",
         "mongodb": "^6.5.0",
