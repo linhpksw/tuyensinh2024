@@ -3,44 +3,30 @@ import Head from 'next/head';
 import { client } from '@/lib/mongodb';
 import { useEffect, useState } from 'react';
 import ZaloWidget from '@/components/feature/ZaloWidget';
-import Cookies from 'js-cookie';
 
 export default function StudentDetails({ initialData }) {
     const [data, setData] = useState(initialData);
+    const registerPhone = initialData[0]?.registerPhone;
 
     useEffect(() => {
-        // Attempt to fetch data from cookies
-        const fetchDataFromCookies = () => {
-            const studentData = Cookies.get('studentData');
-            if (studentData) {
-                setData(JSON.parse(studentData));
-                Cookies.remove('studentData'); // Clear the cookie immediately after reading
-            } else if (initialData.length === 0) {
-                // If no data in cookies, fetch data from the API
-                fetchData();
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`/api/get?registerPhone=${registerPhone}`);
+                if (!response.ok) throw new Error('Failed to fetch');
+                const fetchedData = await response.json();
+                if (fetchedData.length === 0) {
+                    console.log('No student data found for this phone number.');
+                }
+                setData(fetchedData);
+            } catch (error) {
+                console.error('Error fetching data:', error.message);
+                setData([]);
             }
         };
 
-        fetchDataFromCookies();
-    }, []);
+        fetchData();
+    }, [registerPhone]);
 
-    const registerPhone = initialData[0]?.registerPhone;
-
-    const fetchData = async () => {
-        try {
-            const response = await fetch(`/api/get?registerPhone=${registerPhone}`);
-            if (!response.ok) throw new Error('Failed to fetch');
-            const fetchedData = await response.json();
-            if (fetchedData.length === 0) {
-                // Handle case where no data is found
-                console.log('No student data found for this phone number.');
-            }
-            setData(fetchedData);
-        } catch (error) {
-            console.error('Error fetching data:', error.message);
-            setData([]); // Ensure state is clear if there's an error
-        }
-    };
     return (
         <>
             <Head>

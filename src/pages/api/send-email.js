@@ -41,6 +41,7 @@ export default sendEmail;
 
 function generateHtmlContent(data) {
     const note = classInfo[data[0].subject];
+    const isNotAvailale = data[0].subject.includes('10');
 
     const studentNum = data.length;
 
@@ -64,6 +65,20 @@ function generateHtmlContent(data) {
       padding-left: 40px;
       line-height: 1.5;
     }
+    .alert {
+        gap: 8px;
+        margin-top: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+        font-size: 0.875rem;
+        color: #854d0e;
+        background-color: #fef3c7;
+        border-radius: 0.375rem;
+    }
+
+    .alert .font-medium {
+        font-weight: 500;
+    }
   </style>
 </head>
 <body>
@@ -72,6 +87,14 @@ function generateHtmlContent(data) {
   <p style="color: #374151;">
     Đơn đăng kí học cho con đã được trung tâm xác nhận. Phụ huynh vui lòng kiểm tra lại thông tin bên dưới.
   </p>
+
+  ${
+      isNotAvailale
+          ? `<div class="alert">
+        <span class="font-medium">Chú ý: </span> Khối 10 hiện tại đã đủ sĩ số lớp và đơn đăng ký của phụ huynh sẽ nằm vào trong danh sách chờ của lớp. CLB Ánh Sáng sẽ liên hệ với PH ngay khi lớp có chỗ trống mới hoặc có thêm lớp mới ạ.
+    </div>`
+          : ''
+  }
 
   ${data
       .map(

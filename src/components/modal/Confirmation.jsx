@@ -14,6 +14,8 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    const isNotAvailale = data[0].subject.includes('10');
+
     const router = useRouter();
     const handleNavigation = () => {
         router.push('/');
@@ -108,6 +110,12 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                     <p className="text-2xl lg:text-4xl font-bold tracking-tighter text-gray-900">Đăng kí học thành công</p>
                     <CheckBadgeIcon className="w-8 h-8 lg:w-10 lg:h-10 text-emerald-500" />
                 </div>
+
+                {isNotAvailale && <div className="gap-2 mt-3">
+                    <div className="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50">
+                        <span className="font-medium">Chú ý: </span> Khối 10 hiện tại đã đủ sĩ số lớp và đơn đăng ký của phụ huynh sẽ nằm vào trong danh sách chờ của lớp. CLB Ánh Sáng sẽ liên hệ với PH ngay khi lớp có chỗ trống mới hoặc có thêm lớp mới ạ.
+                    </div>
+                </div>}
 
                 <p className="mt-3 text-base text-gray-500">Đơn đăng kí học cho học sinh <span className="text-indigo-600 font-medium text-nowrap">{data.length === 1
                     ? data[0].studentName
