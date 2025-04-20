@@ -1,31 +1,28 @@
 import Confirmation from '@/components/modal/Confirmation';
 import Head from 'next/head';
-import { client } from '@/lib/mongodb';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import ZaloWidget from '@/components/feature/ZaloWidget';
+import useStudentStore from '@/stores/studentStores';
 
 export default function StudentDetails({ initialData }) {
-    const [data, setData] = useState(initialData);
-    const registerPhone = initialData[0]?.registerPhone;
+    const { studentData, setStudentData, clearStudentData } = useStudentStore();
+    const [data, setData] = useState(studentData || initialData);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`/api/get?registerPhone=${registerPhone}`);
-                if (!response.ok) throw new Error('Failed to fetch');
-                const fetchedData = await response.json();
-                if (fetchedData.length === 0) {
-                    console.log('No student data found for this phone number.');
-                }
-                setData(fetchedData);
-            } catch (error) {
-                console.error('Error fetching data:', error.message);
-                setData([]);
-            }
-        };
+        // If Zustand store is empty (e.g. page refresh), fall back to SSR data
+        if (!studentData && initialData) {
+            setStudentData(initialData);
+        }
+    }, [studentData, initialData, setStudentData]);
 
-        fetchData();
-    }, [registerPhone]);
+    // OPTIONAL: Clean up when navigating away
+    useEffect(() => {
+        return () => {
+            clearStudentData();
+        };
+    }, []);
+
+    const registerPhone = data[0]?.registerPhone;
 
     return (
         <>
@@ -49,29 +46,26 @@ export default function StudentDetails({ initialData }) {
 }
 
 export async function getServerSideProps(context) {
-    let students;
-    if (context.query.students) {
-        // If students data is passed in the query, parse it and use it directly
-        students = JSON.parse(context.query.students);
-    } else {
-        // Perform database query to fetch students
-        const database = client.db(process.env.DB_NAME);
-        const student = database.collection(process.env.COLLECTION_NAME);
+    const registerPhone = context.query.id;
 
-        const query = { registerPhone: context.query.id };
-        students = await student.find(query, { projection: { _id: 0 } }).toArray();
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/students/admissions?registerPhone=${registerPhone}`
+        );
 
-        if (students.length === 0) {
-            // No students found, let Next.js handle the 404
-            return {
-                notFound: true, // This will trigger Next.js to show the default 404 page
-            };
+        if (!res.ok) {
+            return { notFound: true };
         }
-    }
 
-    return {
-        props: {
-            initialData: students,
-        },
-    };
+        const students = await res.json();
+
+        return {
+            props: {
+                initialData: students,
+            },
+        };
+    } catch (err) {
+        console.error('SSR fetch error:', err);
+        return { notFound: true };
+    }
 }

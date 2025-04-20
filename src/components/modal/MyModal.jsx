@@ -1,25 +1,38 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { useState, Fragment, useEffect } from 'react'
-import { UserIcon, UsersIcon } from '@heroicons/react/24/outline'
+import { Dialog, Transition } from '@headlessui/react';
+import { useState, Fragment, useEffect } from 'react';
+import { UserIcon, UsersIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
 import { customAlphabet } from 'nanoid';
-import { classOptions } from '@/lib/data';
+import { classOptions, schoolList } from '@/lib/data';
 
-export default function MyModal({ onClose, registerPhone }) {
+export default function MyModal({ onClose, registerPhone, data = null, onDataUpdated }) {
+    const apiBase = process.env.NEXT_PUBLIC_API_URL;
     const router = useRouter();
+    const isEdit = Array.isArray(data);
+    const initialCount = isEdit ? data.length : 1;
 
-    let [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const [numStudents, setNumStudents] = useState(1);
+
+    useEffect(() => {
+        // reset to match incoming data if it changes
+        if (isEdit) setNumStudents(data.length);
+    }, [data, isEdit]);
+
+    const handleNumStudentsChange = (e) => {
+        const v = parseInt(e.target.value, 10);
+        // on create: v ≥ 1, on edit: v ≥ initialCount, always ≤ 3
+        const min = isEdit ? initialCount : 1;
+        if (v >= min && v <= 3) {
+            setNumStudents(v);
+        }
+    };
 
     function closeModal() {
         setIsOpen(false);
         onClose(); // call the onClose function passed from MyForm
     }
-
-    const [numStudents, setNumStudents] = useState(1);
-
-    const handleNumStudentsChange = (e) => {
-        setNumStudents(parseInt(e.target.value)); // parse the selected value as an integer
-    };
 
     function formatName(name) {
         return name
@@ -31,220 +44,502 @@ export default function MyModal({ onClose, registerPhone }) {
     }
 
     const renderStudentFields = () => {
-        let fields = [];
-        for (let i = 1; i <= numStudents; i++) {
-            fields.push(
-                <div key={i}>
+        return Array.from({ length: numStudents }, (_, idx) => {
+            const i = idx + 1;
+            const student = isEdit ? data[idx] || {} : {};
+            return (
+                <div key={i} className='mb-8'>
                     <div className='flex items-center gap-1 mb-5'>
-                        <UserIcon className="h-6 w-6 text-rose-600" />
-                        <span className='text-rose-600 font-medium text-lg'>{numStudents == 1 ? 'Thông tin học sinh' : 'Thông tin học sinh thứ ' + i}</span>
+                        <UserIcon className='h-6 w-6 text-rose-600' />
+                        <span className='text-rose-600 font-medium text-lg'>
+                            {numStudents === 1 ? 'Thông tin học sinh' : `Thông tin học sinh thứ ${i}`}
+                        </span>
                     </div>
 
-                    <div className="grid md:grid-cols-2 md:gap-6 ">
-                        <div className="relative z-0 w-full mb-6 group">
-                            <input id={`studentName${i}`} type="text" name="studentName" className="block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                            <label htmlFor="studentName"
-                                className=" peer-focus:font-medium absolute text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6">Họ và tên <span className='text-red-600'>*</span></label>
+                    <div className='grid md:grid-cols-2 md:gap-6'>
+                        {/* Student Name */}
+                        <div className='relative z-0 w-full mb-6 group'>
+                            <input
+                                id={`studentName${i}`}
+                                name='studentName'
+                                defaultValue={student.studentName || ''}
+                                required
+                                className='peer block w-full border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0'
+                                placeholder=' '
+                            />
+                            <label
+                                htmlFor={`studentName${i}`}
+                                className='absolute top-1 -z-10 origin-[0] -translate-y-6 scale-75 text-gray-500 duration-300 peer-placeholder-shown:translate-y-1 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600'>
+                                Họ và tên <span className='text-red-600'>*</span>
+                            </label>
                         </div>
 
-                        <div className="relative z-0 w-full mb-6 group">
-                            <input id={`year${i}`} type="number" min="2000" max="2023" name="year" className="block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                            <label htmlFor="year" className=" peer-focus:font-medium absolute text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6">Năm sinh <span className='text-red-600'>*</span></label>
+                        {/* Year */}
+                        <div className='relative z-0 w-full mb-6 group'>
+                            <input
+                                id={`year${i}`}
+                                name='year'
+                                type='number'
+                                min='2008'
+                                max='2012'
+                                defaultValue={student.year || ''}
+                                required
+                                className='peer block w-full border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0'
+                                placeholder=' '
+                            />
+                            <label
+                                htmlFor={`year${i}`}
+                                className='absolute top-1 -z-10 origin-[0] -translate-y-6 scale-75 text-gray-500 duration-300 peer-placeholder-shown:translate-y-1 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600'>
+                                Năm sinh <span className='text-red-600'>*</span>
+                            </label>
                         </div>
-
                     </div>
 
-
-                    <div className="grid md:grid-cols-2 md:gap-6">
-                        <div className="relative z-0 w-full mb-6 group">
-                            <input id={`school${i}`} type="text" name="school" className="block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                            <label htmlFor="school" className=" peer-focus:font-medium absolute  text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6">Trường <span className='text-red-600'>*</span></label>
+                    {/* School */}
+                    <div className='grid md:grid-cols-2 md:gap-6'>
+                        <div className='relative z-0 w-full mb-6 group'>
+                            <input
+                                id={`school${i}`}
+                                type='text'
+                                name='school'
+                                list={`school-list-${i}`}
+                                defaultValue={student.school || ''}
+                                required
+                                className='peer block w-full border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0'
+                                placeholder=' '
+                            />
+                            <label
+                                htmlFor={`school${i}`}
+                                className='absolute top-1 -z-10 origin-[0] -translate-y-6 scale-75 text-gray-500 duration-300 peer-placeholder-shown:translate-y-1 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600'>
+                                Trường <span className='text-red-600'>*</span>
+                            </label>
+                            <datalist id={`school-list-${i}`}>
+                                {schoolList.map((s) => (
+                                    <option key={s.name} value={s.name} />
+                                ))}
+                            </datalist>
                         </div>
 
-
-                        <div className="relative z-0 w-full mb-3 group">
-                            <input id={`studentPhone${i}`} type="tel" name="studentPhone" className="block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                            <label htmlFor="studentPhone" className=" peer-focus:font-medium absolute  text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6" pattern="0[35789][0-9]{8}" title="Số điện thoại không hợp lệ.">Số điện thoại</label>
+                        {/* Student Phone */}
+                        <div className='relative z-0 w-full mb-6 group'>
+                            <input
+                                id={`studentPhone${i}`}
+                                name='studentPhone'
+                                type='tel'
+                                defaultValue={student.studentPhone || ''}
+                                className='peer block w-full border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0'
+                                placeholder=' '
+                                pattern='0[35789][0-9]{8}'
+                                title='Số điện thoại không hợp lệ.'
+                            />
+                            <label
+                                htmlFor={`studentPhone${i}`}
+                                className='absolute top-1 -z-10 origin-[0] -translate-y-6 scale-75 text-gray-500 duration-300 peer-placeholder-shown:translate-y-1 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600'>
+                                Số điện thoại (Không bắt buộc)
+                            </label>
                         </div>
                     </div>
 
-                    <div>
-                        <select id={`subject${i}`} className="mb-5 block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-300 peer" required>
-                            <option value="" className='text-gray-500'>Chọn lớp học...</option>
-                            {classOptions.map((option) => (
-                                <option key={option.type} value={option.type} disabled={option.state === 'disabled'}
-                                    className={`text-gray-500 ${option.state === 'disabled' ? 'text-gray-400' : 'text-gray-700'}`}
-                                >
-                                    {option.type}{option.state === 'disabled' ? ' (Sắp khai giảng)' : ''}
-                                </option>
+                    {/* Subject */}
+                    <div className='relative z-0 w-full mb-6 group'>
+                        <input
+                            id={`subject${i}`}
+                            name='subject'
+                            list={`subject-list-${i}`}
+                            defaultValue={student.subject || ''}
+                            required
+                            className='peer block w-full border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-gray-500 focus:border-blue-600 focus:outline-none focus:ring-0'
+                            placeholder=' '
+                            // chỉ cho phép 1 trong các giá trị này
+                            pattern={`^(${classOptions
+                                .filter((o) => o.state !== 'disabled') // chỉ các lớp “enabled”
+                                .map((o) => o.type.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')) // escape regex
+                                .join('|')})$`}
+                            title='Vui lòng chọn một lớp có trong danh sách'
+                        />
+                        <label
+                            htmlFor={`subject${i}`}
+                            className='absolute top-1 -z-10 origin-[0] -translate-y-6 scale-75 text-gray-500 duration-300 peer-placeholder-shown:translate-y-1 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600'>
+                            Chọn lớp học <span className='text-red-600'>*</span>
+                        </label>
+                        <datalist id={`subject-list-${i}`}>
+                            {classOptions.map((o) => (
+                                <option key={o.type} value={o.type} />
                             ))}
-                        </select>
+                        </datalist>
                     </div>
-
                 </div>
             );
-        }
-        return fields;
+        });
     };
 
-    const [isLoading, setIsLoading] = useState(false);
+    // const renderStudentFields = () => {
+    //     let fields = [];
+    //     for (let i = 1; i <= numStudents; i++) {
+    //         fields.push(
+    //             <div key={i}>
+    //                 <div className='flex items-center gap-1 mb-5'>
+    //                     <UserIcon className='h-6 w-6 text-rose-600' />
+    //                     <span className='text-rose-600 font-medium text-lg'>
+    //                         {numStudents == 1 ? 'Thông tin học sinh' : 'Thông tin học sinh thứ ' + i}
+    //                     </span>
+    //                 </div>
 
+    //                 <div className='grid md:grid-cols-2 md:gap-6 '>
+    //                     <div className='relative z-0 w-full mb-6 group'>
+    //                         <input
+    //                             id={`studentName${i}`}
+    //                             type='text'
+    //                             name='studentName'
+    //                             className='block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+    //                             placeholder=' '
+    //                             required
+    //                         />
+    //                         <label
+    //                             htmlFor='studentName'
+    //                             className=' peer-focus:font-medium absolute text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6'>
+    //                             Họ và tên <span className='text-red-600'>*</span>
+    //                         </label>
+    //                     </div>
+
+    //                     <div className='relative z-0 w-full mb-6 group'>
+    //                         <input
+    //                             id={`year${i}`}
+    //                             type='number'
+    //                             min='2008'
+    //                             max='2012'
+    //                             name='year'
+    //                             className='block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+    //                             placeholder=' '
+    //                             required
+    //                         />
+    //                         <label
+    //                             htmlFor='year'
+    //                             className=' peer-focus:font-medium absolute text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6'>
+    //                             Năm sinh <span className='text-red-600'>*</span>
+    //                         </label>
+    //                     </div>
+    //                 </div>
+
+    //                 <div className='grid md:grid-cols-2 md:gap-6'>
+    //                     <div className='relative z-0 w-full mb-6 group'>
+    //                         <input
+    //                             id={`school${i}`}
+    //                             type='text'
+    //                             name='school'
+    //                             list={`school-list-${i}`}
+    //                             className='block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+    //                             placeholder=' '
+    //                             required
+    //                         />
+    //                         <label
+    //                             htmlFor='school'
+    //                             className=' peer-focus:font-medium absolute  text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6'>
+    //                             Trường <span className='text-red-600'>*</span>
+    //                         </label>
+
+    //                         <datalist id={`school-list-${i}`}>
+    //                             {schoolList.map((s) => (
+    //                                 <option key={s.name} value={s.name} />
+    //                             ))}
+    //                         </datalist>
+    //                     </div>
+
+    //                     <div className='relative z-0 w-full mb-3 group'>
+    //                         <input
+    //                             id={`studentPhone${i}`}
+    //                             type='tel'
+    //                             name='studentPhone'
+    //                             className='block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+    //                             placeholder=' '
+    //                         />
+    //                         <label
+    //                             htmlFor='studentPhone'
+    //                             className=' peer-focus:font-medium absolute  text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6'
+    //                             pattern='0[35789][0-9]{8}'
+    //                             title='Số điện thoại không hợp lệ.'>
+    //                             Số điện thoại (Không bắt buộc)
+    //                         </label>
+    //                     </div>
+    //                 </div>
+
+    //                 <div className='relative z-0 w-full mb-3 group'>
+    //                     <input
+    //                         id={`subject${i}`}
+    //                         name='subject'
+    //                         list={`subject-list-${i}`}
+    //                         placeholder=' '
+    //                         className='block py-2.5 px-0 w-full text-gray-500 bg-transparent
+    //            border-0 border-b-2 border-gray-300 appearance-none
+    //            focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+    //                         required
+    //                         // chỉ cho phép 1 trong các giá trị này
+    //                         pattern={`^(${classOptions
+    //                             .filter((o) => o.state !== 'disabled') // chỉ các lớp “enabled”
+    //                             .map((o) => o.type.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')) // escape regex
+    //                             .join('|')})$`}
+    //                         title='Vui lòng chọn một lớp có trong danh sách'
+    //                     />
+    //                     <label
+    //                         htmlFor={`subject${i}`}
+    //                         className='peer-focus:font-medium absolute text-gray-500 duration-300
+    //            transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]
+    //            peer-focus:left-0 peer-focus:text-blue-600
+    //            peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1
+    //            peer-focus:scale-75 peer-focus:-translate-y-6'>
+    //                         Chọn lớp học <span className='text-red-600'>*</span>
+    //                     </label>
+
+    //                     <datalist id={`subject-list-${i}`}>
+    //                         {classOptions.map((option) => (
+    //                             <option
+    //                                 key={option.type}
+    //                                 value={option.type}
+    //                                 // datalist doesn’t support disabling, so we just skip disabled ones in the pattern
+    //                             />
+    //                         ))}
+    //                     </datalist>
+    //                 </div>
+    //             </div>
+    //         );
+    //     }
+    //     return fields;
+    // };
 
     const handleSubmit = async (e) => {
-        try {
-            e.preventDefault();
-            setIsLoading(true);
+        e.preventDefault();
+        setIsLoading(true);
 
-            let data = [];
+        const str = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const nanoid = customAlphabet(str, 6);
+        const fields = e.target;
+        const updated = [];
 
-            const str = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-            const nanoid = customAlphabet(str, 6);
-
-            for (let i = 1; i <= numStudents; i++) {
-                const {
-                    [`studentName${i}`]: studentName,
-                    [`studentPhone${i}`]: studentPhone,
-                    [`school${i}`]: school,
-                    [`year${i}`]: year,
-                    [`subject${i}`]: subject,
-                } = e.target;
-
-                data.push({
-                    studentId: nanoid(),
-                    time: new Date(),
-                    registerPhone: registerPhone,
-                    studentName: formatName(studentName.value),
-                    studentPhone: studentPhone.value,
-                    school: school.value,
-                    year: year.value,
-                    subject: subject.value,
-                    backupPhone: e.target.backupPhone.value,
-                    email: e.target.email.value,
-                });
-            }
-
-            const JSONdata = JSON.stringify(data);
-            const endpoint = '/api/add';
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSONdata,
-            };
-
-            const response = await fetch(endpoint, options);
-            const result = await response.json();
-
-            if (result.status == 'success') {
-                router.push(`/${registerPhone}`);
-
-                await fetch("/api/send-zns", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ data }),
-                });
-
-                await fetch("/api/send-email", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ data }),
-                });
-
-            } else {
-                alert('Đã có lỗi xảy ra. Vui lòng thử lại sau!');
-            }
-
-        } catch (error) {
-            console.log(error);
-        } finally {
+        for (let i = 1; i <= numStudents; i++) {
+            updated.push({
+                studentId: isEdit && data[i - 1]?.studentId ? data[i - 1].studentId : nanoid(),
+                time: new Date(),
+                registerPhone,
+                studentName: formatName(fields[`studentName${i}`].value),
+                studentPhone: fields[`studentPhone${i}`].value,
+                school: fields[`school${i}`].value,
+                year: fields[`year${i}`].value,
+                subject: fields[`subject${i}`].value,
+                backupPhone: fields.backupPhone.value || registerPhone,
+                email: fields.email.value,
+            });
         }
-    }
+
+        // 1) If nothing changed, just close:
+        const isUnchanged =
+            data.length === updated.length &&
+            data.every((orig, idx) => {
+                const upd = updated[idx];
+                return (
+                    orig.studentId === upd.studentId &&
+                    orig.studentName === upd.studentName &&
+                    orig.studentPhone === upd.studentPhone &&
+                    orig.school === upd.school &&
+                    orig.year === upd.year &&
+                    orig.subject === upd.subject
+                );
+            });
+
+        if (isUnchanged) {
+            setIsLoading(false);
+            closeModal();
+            return;
+        }
+
+        // 2) Otherwise proceed with PUT …
+
+        try {
+            if (isEdit) {
+                console.log('isEdit');
+                // PUT update
+                const res = await fetch(`${apiBase}/api/students/admissions`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ data: updated }),
+                });
+                const result = await res.json();
+                if (!res.ok || result.status !== 'success') {
+                    throw new Error(result.message || 'Update failed');
+                }
+                onDataUpdated(updated);
+            } else {
+                console.log('isCreate');
+                // POST create
+                const res = await fetch(`${apiBase}/api/students/admissions`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(updated),
+                });
+                const json = await res.json();
+                if (!res.ok || json.status !== 'success') {
+                    throw new Error(json.message || 'Creation failed');
+                }
+                onDataUpdated && onDataUpdated(updated);
+            }
+
+            // 2) send ZNS
+            await fetch(`${apiBase}/api/send-zns`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: updated }),
+            });
+
+            // 3) send Email
+            await fetch(`${apiBase}/api/send-email`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: updated }),
+            });
+
+            if (!isEdit) {
+                // on create navigate
+                router.push(`/${registerPhone}`);
+            }
+        } catch (error) {
+            console.error(error);
+            alert((isEdit ? 'Cập nhật' : 'Tạo mới') + ' thất bại: ' + error.message);
+        } finally {
+            setIsLoading(false);
+            closeModal();
+        }
+    };
 
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
-                <Dialog as="div" className="relative z-50" onClose={closeModal}>
+                <Dialog as='div' className='relative z-50' onClose={closeModal}>
                     <Transition.Child
                         as={Fragment}
-                        enter="ease-out duration-300"
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="ease-in duration-200"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                    >
-                        <div className="fixed inset-0 bg-black bg-opacity-25" />
+                        enter='ease-out duration-300'
+                        enterFrom='opacity-0'
+                        enterTo='opacity-100'
+                        leave='ease-in duration-200'
+                        leaveFrom='opacity-100'
+                        leaveTo='opacity-0'>
+                        <div className='fixed inset-0 bg-black bg-opacity-25' />
                     </Transition.Child>
 
-                    <div className="fixed inset-0 overflow-y-auto">
-                        <div className="flex min-h-full items-center justify-center p-4 text-center">
+                    <div className='fixed inset-0 overflow-y-auto'>
+                        <div className='flex min-h-full items-center justify-center p-4 text-center'>
                             <Transition.Child
                                 as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0 scale-95"
-                                enterTo="opacity-100 scale-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100 scale-100"
-                                leaveTo="opacity-0 scale-95"
-                            >
-                                <Dialog.Panel className="w-full max-w-md lg:max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                                    <Dialog.Title
-                                        as="h1"
-                                        className="text-2xl  font-bold text-gray-900 mb-4"
-                                    >
-                                        Phiếu đăng kí học tại lớp toán Câu lạc bộ Ánh Sáng
+                                enter='ease-out duration-300'
+                                enterFrom='opacity-0 scale-95'
+                                enterTo='opacity-100 scale-100'
+                                leave='ease-in duration-200'
+                                leaveFrom='opacity-100 scale-100'
+                                leaveTo='opacity-0 scale-95'>
+                                <Dialog.Panel className='w-full max-w-md lg:max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
+                                    <Dialog.Title as='h1' className='text-2xl  font-bold text-gray-900 mb-8'>
+                                        {isEdit
+                                            ? 'Chỉnh sửa đăng ký học tại lớp toán Câu lạc bộ Ánh Sáng'
+                                            : 'Phiếu đăng ký học tại lớp toán Câu lạc bộ Ánh Sáng'}
                                     </Dialog.Title>
 
                                     <form onSubmit={handleSubmit}>
-                                        <div>
-                                            <select id="quantity" value={numStudents} onChange={handleNumStudentsChange} className="mb-5 block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-300 peer">
-
-                                                {[1, 2, 3, 4, 5].map((num, id) =>
-                                                    (<option key={id} value={num} className=" text-gray-500">Đăng kí cho {num} học sinh</option>)
-                                                )}
-                                            </select>
+                                        <div className='relative z-0 w-full mb-6 group'>
+                                            <input
+                                                id='quantity'
+                                                name='quantity'
+                                                type='number'
+                                                defaultValue={isEdit ? initialCount : 1}
+                                                onChange={handleNumStudentsChange}
+                                                min={isEdit ? initialCount : 1}
+                                                max={3}
+                                                step={1}
+                                                className='block py-2.5 px-0 w-full text-gray-500 bg-transparent 
+               border-0 border-b-2 border-gray-300 appearance-none 
+               focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+                                                placeholder=' '
+                                                required
+                                            />
+                                            <label
+                                                htmlFor='quantity'
+                                                className='peer-focus:font-medium absolute text-gray-500 duration-300 
+               transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] 
+               peer-focus:left-0 peer-focus:text-blue-600 
+               peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 
+               peer-focus:scale-75 peer-focus:-translate-y-6'>
+                                                Đăng ký cho số học sinh <span className='text-red-600'>*</span>
+                                            </label>
                                         </div>
-
-                                        {numStudents > 0 && renderStudentFields()} {/* Render the student fields only if numStudents > 0 */}
-
+                                        {numStudents > 0 && renderStudentFields()}{' '}
+                                        {/* Render the student fields only if numStudents > 0 */}
                                         {/* Phan ko lap lai */}
                                         <div className='flex items-center gap-1 mb-5'>
-                                            <UsersIcon className="h-6 w-6 text-rose-600" />
-                                            <span className='text-rose-600 font-medium text-lg'>Thông tin phụ huynh</span>
+                                            <UsersIcon className='h-6 w-6 text-rose-600' />
+                                            <span className='text-rose-600 font-medium text-lg'>
+                                                Thông tin phụ huynh
+                                            </span>
                                         </div>
-
-                                        <div className="grid md:grid-cols-2 md:gap-6">
+                                        <div className='grid md:grid-cols-2 md:gap-6'>
                                             {/* Backup Phone */}
-                                            <div className="relative z-0 w-full mb-6 group">
-                                                <input type="tel" name="backupPhone" id="backupPhone" className="block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required pattern="0[35789][0-9]{8}" title="Số điện thoại không hợp lệ." />
+                                            <div className='relative z-0 w-full mb-6 group'>
+                                                <input
+                                                    type='tel'
+                                                    name='backupPhone'
+                                                    defaultValue={isEdit ? data[0].backupPhone : registerPhone}
+                                                    id='backupPhone'
+                                                    className='block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+                                                    placeholder=' '
+                                                    required
+                                                    pattern='0[35789][0-9]{8}'
+                                                    title='Số điện thoại không hợp lệ.'
+                                                />
 
-                                                <label htmlFor="backupPhone" className=" peer-focus:font-medium absolute  text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6">Số điện thoại đăng ký Zalo <span className='text-red-600'>*</span></label>
+                                                <label
+                                                    htmlFor='backupPhone'
+                                                    className=' peer-focus:font-medium absolute  text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6'>
+                                                    Số điện thoại đăng ký Zalo <span className='text-red-600'>*</span>
+                                                </label>
                                             </div>
                                             {/* Email */}
-                                            <div className="relative z-0 w-full mb-6 group">
-                                                <input type="email" name="email" id="email" className="block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                                                <label htmlFor="email" className="peer-focus:font-medium absolute text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6">Email phụ huynh <span className='text-red-600'>*</span></label>
+                                            <div className='relative z-0 w-full mb-6 group'>
+                                                <input
+                                                    type='email'
+                                                    name='email'
+                                                    id='email'
+                                                    defaultValue={isEdit ? data[0].email : ''}
+                                                    className='block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+                                                    placeholder=' '
+                                                    required
+                                                />
+                                                <label
+                                                    htmlFor='email'
+                                                    className='peer-focus:font-medium absolute text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6'>
+                                                    Email phụ huynh <span className='text-red-600'>*</span>
+                                                </label>
                                             </div>
                                         </div>
-
-                                        <div className="flex items-center mt-2 gap-5">
-
+                                        <div className='flex items-center mt-2 gap-5'>
                                             <button
                                                 className='flex items-center gap-3 bg-blue-100 rounded-md border border-transparent  font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 px-4 py-2'
-                                                type="submit" disabled={isLoading}>
+                                                type='submit'
+                                                disabled={isLoading}>
+                                                {isLoading && (
+                                                    <div className='animate-spin rounded-full border-2 border-t-transparent border-blue-900 h-5 w-5' />
+                                                )}
 
-                                                {isLoading ?
-                                                    <div className="border-t-transparent border-solid animate-spin  rounded-full border-blue-900 border-2 h-5 w-5"></div>
-                                                    : null}
-                                                {isLoading ? 'Đang xử lý...' : 'Đăng ký'}
+                                                {isLoading
+                                                    ? isEdit
+                                                        ? 'Đang cập nhật…'
+                                                        : 'Đang xử lý…'
+                                                    : isEdit
+                                                    ? 'Chỉnh sửa'
+                                                    : 'Đăng ký'}
                                             </button>
 
-                                            <button type="button" onClick={closeModal} className="text-rose-700 hover:text-white border border-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg px-4 py-2 text-center">Huỷ đăng ký</button>
+                                            <button
+                                                type='button'
+                                                onClick={closeModal}
+                                                className='text-rose-700 hover:text-white border border-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg px-4 py-2 text-center'>
+                                                {isEdit ? 'Huỷ chỉnh sửa' : 'Huỷ đăng ký'}
+                                            </button>
                                         </div>
                                     </form>
                                 </Dialog.Panel>
@@ -254,5 +549,5 @@ export default function MyModal({ onClose, registerPhone }) {
                 </Dialog>
             </Transition>
         </>
-    )
+    );
 }
