@@ -76,27 +76,35 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
 
                         {/* Year */}
                         <div className='relative z-0 w-full mb-6 group'>
-                            <input
+                            <select
                                 id={`year${i}`}
                                 name='year'
-                                type='number'
-                                min='2008'
-                                max='2012'
                                 defaultValue={student.year || ''}
                                 required
-                                className='peer block w-full border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0'
-                                placeholder=' '
-                            />
+                                className='peer block w-full border-0 border-b-2 border-gray-300 bg-transparent 
+               py-2.5 px-0 text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0'>
+                                {/* blank placeholder */}
+                                <option value='' disabled hidden />
+                                {/* years 2008–2012 */}
+                                {[2008, 2009, 2010, 2011, 2012].map((y) => (
+                                    <option key={y} value={y}>
+                                        {y}
+                                    </option>
+                                ))}
+                            </select>
+
                             <label
                                 htmlFor={`year${i}`}
-                                className='absolute top-1 -z-10 origin-[0] -translate-y-6 scale-75 text-gray-500 duration-300 peer-placeholder-shown:translate-y-1 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600'>
+                                className='absolute top-1 -z-10 origin-[0] transform text-gray-500 duration-300
+               peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600
+               peer-valid:-translate-y-6 peer-valid:scale-75'>
                                 Năm sinh <span className='text-red-600'>*</span>
                             </label>
                         </div>
                     </div>
 
-                    {/* School */}
                     <div className='grid md:grid-cols-2 md:gap-6'>
+                        {/* School */}
                         <div className='relative z-0 w-full mb-6 group'>
                             <input
                                 id={`school${i}`}
@@ -142,31 +150,32 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
 
                     {/* Subject */}
                     <div className='relative z-0 w-full mb-6 group'>
-                        <input
+                        <select
                             id={`subject${i}`}
                             name='subject'
-                            list={`subject-list-${i}`}
                             defaultValue={student.subject || ''}
                             required
-                            className='peer block w-full border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-gray-500 focus:border-blue-600 focus:outline-none focus:ring-0'
-                            placeholder=' '
-                            // chỉ cho phép 1 trong các giá trị này
-                            pattern={`^(${classOptions
-                                .filter((o) => o.state !== 'disabled') // chỉ các lớp “enabled”
-                                .map((o) => o.type.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')) // escape regex
-                                .join('|')})$`}
-                            title='Vui lòng chọn một lớp có trong danh sách'
-                        />
+                            className='peer block w-full border-0 border-b-2 border-gray-300 bg-transparent 
+               py-2.5 px-0 text-gray-500 focus:border-blue-600 focus:outline-none focus:ring-0'>
+                            {/* placeholder */}
+                            <option value='' disabled hidden />
+                            {/* available classes */}
+                            {classOptions.map((o) => (
+                                <option key={o.type} value={o.type} disabled={o.state === 'disabled'}>
+                                    {o.type}
+                                    {o.state === 'disabled' ? ' (Sắp khai giảng)' : ''}
+                                </option>
+                            ))}
+                        </select>
+
                         <label
                             htmlFor={`subject${i}`}
-                            className='absolute top-1 -z-10 origin-[0] -translate-y-6 scale-75 text-gray-500 duration-300 peer-placeholder-shown:translate-y-1 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600'>
+                            className='absolute top-1 -z-10 origin-[0] 
+               transform text-gray-500 duration-300
+               peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600
+               peer-valid:-translate-y-6 peer-valid:scale-75'>
                             Chọn lớp học <span className='text-red-600'>*</span>
                         </label>
-                        <datalist id={`subject-list-${i}`}>
-                            {classOptions.map((o) => (
-                                <option key={o.type} value={o.type} />
-                            ))}
-                        </datalist>
                     </div>
                 </div>
             );
@@ -330,32 +339,34 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
             });
         }
 
-        // 1) If nothing changed, just close:
-        const isUnchanged =
-            data.length === updated.length &&
-            data.every((orig, idx) => {
-                const upd = updated[idx];
-                return (
-                    orig.studentId === upd.studentId &&
-                    orig.studentName === upd.studentName &&
-                    orig.studentPhone === upd.studentPhone &&
-                    orig.school === upd.school &&
-                    orig.year === upd.year &&
-                    orig.subject === upd.subject
-                );
-            });
+        // 1) If nothing changed but in edit mode, just close:
 
-        if (isUnchanged) {
-            setIsLoading(false);
-            closeModal();
-            return;
+        if (isEdit) {
+            const isUnchanged =
+                data.length === updated.length &&
+                data.every((orig, idx) => {
+                    const upd = updated[idx];
+                    return (
+                        orig.studentId === upd.studentId &&
+                        orig.studentName === upd.studentName &&
+                        orig.studentPhone === upd.studentPhone &&
+                        orig.school === upd.school &&
+                        orig.year === upd.year &&
+                        orig.subject === upd.subject
+                    );
+                });
+
+            if (isUnchanged) {
+                setIsLoading(false);
+                closeModal();
+                return;
+            }
         }
 
         // 2) Otherwise proceed with PUT …
 
         try {
             if (isEdit) {
-                console.log('isEdit');
                 // PUT update
                 const res = await fetch(`${apiBase}/api/students/admissions`, {
                     method: 'PUT',
@@ -368,7 +379,6 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
                 }
                 onDataUpdated(updated);
             } else {
-                console.log('isCreate');
                 // POST create
                 const res = await fetch(`${apiBase}/api/students/admissions`, {
                     method: 'POST',
@@ -383,21 +393,20 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
             }
 
             // 2) send ZNS
-            await fetch(`${apiBase}/api/send-zns`, {
+            fetch(`${apiBase}/api/send-zns`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ data: updated }),
             });
 
             // 3) send Email
-            await fetch(`${apiBase}/api/send-email`, {
+            fetch(`${apiBase}/api/send-email`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ data: updated }),
             });
 
             if (!isEdit) {
-                // on create navigate
                 router.push(`/${registerPhone}`);
             }
         } catch (error) {
@@ -472,8 +481,8 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
                                         {/* Render the student fields only if numStudents > 0 */}
                                         {/* Phan ko lap lai */}
                                         <div className='flex items-center gap-1 mb-5'>
-                                            <UsersIcon className='h-6 w-6 text-rose-600' />
-                                            <span className='text-rose-600 font-medium text-lg'>
+                                            <UsersIcon className='h-6 w-6 text-blue-600' />
+                                            <span className='text-blue-600 font-medium text-lg'>
                                                 Thông tin phụ huynh
                                             </span>
                                         </div>

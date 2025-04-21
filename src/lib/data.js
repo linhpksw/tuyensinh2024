@@ -19,7 +19,8 @@ import kinhNghiemLuyenThi from '../../public/img/fb/kinhNghiemLuyenThi.png';
 export const classOptions = [
     { type: 'Lớp 10A0 vận dụng cao', state: 'enabled' },
     { type: 'Lớp 10A1 nâng cao', state: 'enabled' },
-    { type: 'Lớp 8 chuyên toán', state: 'enabled' },
+    { type: 'Lớp 8A0 chuyên toán', state: 'enabled' },
+    { type: 'Lớp 8A1 chuyên toán', state: 'enabled' },
     { type: 'Lớp 9A0 chuyên toán', state: 'enabled' },
     { type: 'Lớp 9A1 chuyên toán', state: 'enabled' },
     { type: 'Lớp 9A2 toán nâng cao', state: 'enabled' },
@@ -150,13 +151,13 @@ export const intro = {
 };
 
 export const classInfo = {
-    'Lớp 8 chuyên toán':
-        'Kiểm tra xếp lớp vào chiều Chủ nhật 14/7 (15h - 17h) tại P204 - Khai giảng ngày Thứ Năm 18/7.',
-    'Lớp 9A0 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 17h) - Khai giảng ngày Thứ Ba 4/6.',
-    'Lớp 9A1 chuyên toán': 'Kiểm tra xếp lớp vào chiều Chủ nhật 2/6 (15h - 17h) - Khai giảng ngày Thứ Bảy 8/6',
-    'Lớp 9A2 toán nâng cao': 'Không kiểm tra xếp lớp đầu vào - Khai giảng ngày Chủ Nhật 9/6',
-    'Lớp 10A0 vận dụng cao': 'Khai giảng vào 8h15 sáng Chủ nhật 4/8 tại phòng 204',
-    'Lớp 10A1 nâng cao': 'Khai giảng vào 8h15 sáng Chủ nhật 4/8 tại phòng 305',
+    'Lớp 8A0 chuyên toán': 'Kiểm tra xếp lớp vào tối Thứ bảy 12/7 (19h - 21h) - Khai giảng ngày Thứ ba 15/7 tại P305.',
+    'Lớp 8A1 chuyên toán': 'Kiểm tra xếp lớp vào tối Thứ bảy 12/7 (19h - 21h) - Khai giảng ngày Thứ ba 15/7 tại P204.',
+    'Lớp 9A0 chuyên toán': 'Kiểm tra xếp lớp vào tối Chủ nhật 1/6 (19h - 21h) - Khai giảng ngày Thứ năm 5/6 tại P305.',
+    'Lớp 9A1 chuyên toán': 'Kiểm tra xếp lớp vào tối Chủ nhật 1/6 (19h - 21h) - Khai giảng ngày Thứ năm 5/6 tại P204.',
+    'Lớp 9A2 toán nâng cao': 'Không kiểm tra xếp lớp đầu vào - Khai giảng tối Thứ tư 4/6 tại P205.',
+    'Lớp 10A0 vận dụng cao': 'Khai giảng vào 19h tối Thứ sáu 1/8 tại P305.',
+    'Lớp 10A1 nâng cao': 'Khai giảng vào 19h tối Thứ sáu 1/8 tại P204.',
 };
 
 export const timetable = {
@@ -164,7 +165,7 @@ export const timetable = {
         {
             no: 1,
             grade: 'LỚP 8A0 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật dd/mm (15h - 17h) - Khai giảng ngày Thứ Ba dd/mm tại P305',
+            opening: 'Kiểm tra xếp lớp vào tối Thứ bảy 12/7 (19h - 21h) - Khai giảng ngày Thứ ba 15/7 tại P305',
             child: [
                 {
                     subject: 'Đại số - Số học',
@@ -183,7 +184,7 @@ export const timetable = {
         {
             no: 2,
             grade: 'LỚP 8A1 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật dd/mm (15h - 17h) - Khai giảng ngày Thứ Ba dd/mm tại P204',
+            opening: 'Kiểm tra xếp lớp vào tối Thứ bảy 12/7 (19h - 21h) - Khai giảng ngày Thứ ba 15/7 tại P204',
             child: [
                 {
                     subject: 'Hình học',
@@ -202,17 +203,17 @@ export const timetable = {
         {
             no: 3,
             grade: 'LỚP 9A0 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật dd/mm (15h - 17h) - Khai giảng ngày Thứ năm dd/mm tại P305',
+            opening: 'Kiểm tra xếp lớp vào tối Chủ nhật 1/6 (19h - 21h) - Khai giảng ngày Thứ năm 5/6 tại P305',
             child: [
                 {
                     subject: 'Hình học',
                     time: 'Thứ 5 từ 18h30 - 21h30',
-                    teacher: '...',
+                    teacher: 'PGS-TS Phùng Văn Mạnh',
                 },
                 {
                     subject: 'Đại số - Số học',
                     time: 'Chủ nhật từ 19h - 21h',
-                    teacher: '...',
+                    teacher: 'Thầy Lâm',
                 },
             ],
             contact: 'Liên hệ thầy Lâm',
@@ -221,17 +222,17 @@ export const timetable = {
         {
             no: 4,
             grade: 'LỚP 9A1 CHUYÊN TOÁN',
-            opening: 'Kiểm tra xếp lớp vào chiều Chủ nhật dd/mm (15h - 17h) - Khai giảng ngày Thứ năm dd/mm tại P204',
+            opening: 'Kiểm tra xếp lớp vào tối Chủ nhật 1/6 (19h - 21h) - Khai giảng ngày Thứ năm 5/6 tại P204',
             child: [
                 {
                     subject: 'Hình học',
                     time: 'Thứ 5 từ 19h - 21h',
-                    teacher: '...',
+                    teacher: 'Thầy Lâm',
                 },
                 {
                     subject: 'Đại số - Số học',
                     time: 'Chủ nhật từ 18h30 - 21h30',
-                    teacher: '...',
+                    teacher: 'PGS-TS Phùng Văn Mạnh',
                 },
             ],
             contact: 'Liên hệ cô Hường',
@@ -240,7 +241,7 @@ export const timetable = {
         {
             no: 5,
             grade: 'LỚP 9A2 TOÁN NÂNG CAO',
-            opening: 'Không kiểm tra xếp lớp đầu vào - Khai giảng ngày Chủ Nhật dd/mm tại P205',
+            opening: 'Không kiểm tra xếp lớp đầu vào - Khai giảng ngày Thứ tư 4/6 tại P205',
             child: [
                 {
                     subject: 'Hình học và bất đẳng thức',
@@ -253,24 +254,24 @@ export const timetable = {
                     teacher: 'Cô Hường',
                 },
             ],
-            contact: 'Liên hệ thầy Lâm',
-            phone: '0988426803',
+            contact: 'Liên hệ cô Hường',
+            phone: '0362860970',
         },
     ],
     c3: [
         {
             no: 1,
             grade: 'LỚP 10A0 - VẬN DỤNG CAO',
-            opening: 'Khai giảng vào 8h15 sáng Chủ nhật dd/mm tại P305',
+            opening: 'Khai giảng vào 19h tối Thứ sáu 1/8 tại P305',
             child: [
                 {
                     subject: 'Đại số',
-                    time: 'Thứ 2 từ 19h45 - 21h30',
+                    time: 'Thứ 6 từ 19h - 21h',
                     teacher: 'Thầy Hưng',
                 },
                 {
                     subject: 'Hình học',
-                    time: 'Chủ nhật từ 8h15 - 10h',
+                    time: 'Chủ nhật từ 16h - 17h45',
                     teacher: 'Thầy Lâm',
                 },
             ],
@@ -280,7 +281,7 @@ export const timetable = {
         {
             no: 2,
             grade: 'LỚP 10A1 - NÂNG CAO',
-            opening: 'Khai giảng vào 8h15 sáng Chủ nhật dd/mm tại P204',
+            opening: 'Khai giảng vào 19h tối Thứ sáu 1/8 tại P204',
             child: [
                 {
                     subject: 'Hình học',

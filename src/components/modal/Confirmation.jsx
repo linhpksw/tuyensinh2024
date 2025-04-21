@@ -223,8 +223,8 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                     {listStudents}
                     {/* Thong tin phu huynh */}
                     <div className=' flex items-center gap-1'>
-                        <UsersIcon className='h-6 w-6 text-rose-600' />
-                        <h3 className='text-lg font-medium leading-6 text-rose-600'>Thông tin phụ huynh</h3>
+                        <UsersIcon className='h-6 w-6 text-blue-600' />
+                        <h3 className='text-lg font-medium leading-6 text-blue-600'>Thông tin phụ huynh</h3>
                     </div>
 
                     {/* Email va Backup Phone */}
