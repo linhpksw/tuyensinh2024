@@ -22,9 +22,9 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
 
     const handleNumStudentsChange = (e) => {
         const v = parseInt(e.target.value, 10);
-        // on create: v ≥ 1, on edit: v ≥ initialCount, always ≤ 3
+        // on create: v ≥ 1, on edit: v ≥ initialCount, always ≤ 5
         const min = isEdit ? initialCount : 1;
-        if (v >= min && v <= 3) {
+        if (v >= min && v <= 5) {
             setNumStudents(v);
         }
     };
@@ -50,8 +50,8 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
             return (
                 <div key={i} className='mb-8'>
                     <div className='flex items-center gap-1 mb-5'>
-                        <UserIcon className='h-6 w-6 text-rose-600' />
-                        <span className='text-rose-600 font-medium text-lg'>
+                        <UserIcon className='h-6 w-6 text-blue-600' />
+                        <span className='text-blue-600 font-medium text-lg'>
                             {numStudents === 1 ? 'Thông tin học sinh' : `Thông tin học sinh thứ ${i}`}
                         </span>
                     </div>
@@ -452,28 +452,27 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
 
                                     <form onSubmit={handleSubmit}>
                                         <div className='relative z-0 w-full mb-6 group'>
-                                            <input
+                                            <select
                                                 id='quantity'
                                                 name='quantity'
-                                                type='number'
                                                 defaultValue={isEdit ? initialCount : 1}
                                                 onChange={handleNumStudentsChange}
-                                                min={isEdit ? initialCount : 1}
-                                                max={3}
-                                                step={1}
-                                                className='block py-2.5 px-0 w-full text-gray-500 bg-transparent 
-               border-0 border-b-2 border-gray-300 appearance-none 
-               focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-                                                placeholder=' '
                                                 required
-                                            />
+                                                className='peer block w-full border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-gray-500 focus:outline-none focus:ring-0 focus:border-blue-600'>
+                                                {/* blank placeholder */}
+                                                <option value='' disabled hidden />
+                                                {/* options 1–3 */}
+                                                {[1, 2, 3, 4, 5].map((n) => (
+                                                    <option key={n} value={n}>
+                                                        {n}
+                                                    </option>
+                                                ))}
+                                            </select>
                                             <label
                                                 htmlFor='quantity'
-                                                className='peer-focus:font-medium absolute text-gray-500 duration-300 
-               transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] 
-               peer-focus:left-0 peer-focus:text-blue-600 
-               peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 
-               peer-focus:scale-75 peer-focus:-translate-y-6'>
+                                                className='absolute top-1 -z-10 origin-[0] transform text-gray-500 duration-300
+               peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600
+               peer-valid:-translate-y-6 peer-valid:scale-75'>
                                                 Đăng ký cho số học sinh <span className='text-red-600'>*</span>
                                             </label>
                                         </div>
