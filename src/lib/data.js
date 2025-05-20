@@ -208,12 +208,12 @@ export const timetable = {
                 {
                     subject: 'Hình học',
                     time: 'Thứ 5 từ 18h30 - 21h30',
-                    teacher: 'PGS-TS Phùng Văn Mạnh',
+                    teacher: 'Thầy Lâm',
                 },
                 {
                     subject: 'Đại số - Số học',
                     time: 'Chủ nhật từ 19h - 21h',
-                    teacher: 'Thầy Lâm',
+                    teacher: 'PGS-TS Phùng Văn Mạnh',
                 },
             ],
             contact: 'Liên hệ thầy Lâm',
@@ -271,7 +271,7 @@ export const timetable = {
                 },
                 {
                     subject: 'Hình học',
-                    time: 'Chủ nhật từ 16h - 17h45',
+                    time: 'Chủ nhật từ 10h - 11h45',
                     teacher: 'Thầy Lâm',
                 },
             ],
@@ -290,7 +290,7 @@ export const timetable = {
                 },
                 {
                     subject: 'Đại số',
-                    time: 'Chủ nhật từ 16h - 17h45',
+                    time: 'Chủ nhật từ 10h - 11h45',
                     teacher: 'Thầy Hưng',
                 },
             ],
