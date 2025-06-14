@@ -21,9 +21,9 @@ export const classOptions = [
     { type: 'Lớp 10A1 nâng cao', state: 'enabled' },
     { type: 'Lớp 8A0 chuyên toán', state: 'enabled' },
     { type: 'Lớp 8A1 chuyên toán', state: 'enabled' },
-    { type: 'Lớp 9A0 chuyên toán', state: 'enabled' },
-    { type: 'Lớp 9A1 chuyên toán', state: 'enabled' },
-    { type: 'Lớp 9A2 toán nâng cao', state: 'enabled' },
+    { type: 'Lớp 9A0 chuyên toán', state: 'wishlist' },
+    { type: 'Lớp 9A1 chuyên toán', state: 'wishlist' },
+    { type: 'Lớp 9A2 toán nâng cao', state: 'wishlist' },
 ];
 
 export const info = {

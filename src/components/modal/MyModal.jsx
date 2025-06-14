@@ -160,12 +160,28 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
                             {/* placeholder */}
                             <option value='' disabled hidden />
                             {/* available classes */}
-                            {classOptions.map((o) => (
-                                <option key={o.type} value={o.type} disabled={o.state === 'disabled'}>
-                                    {o.type}
-                                    {o.state === 'disabled' ? ' (Sắp khai giảng)' : ''}
-                                </option>
-                            ))}
+                            {classOptions.map((o) => {
+                                // determine suffix
+                                let suffix = '';
+                                if (o.state === 'disabled') suffix = ' (Sắp khai giảng)';
+                                if (o.state === 'wishlist') suffix = ' (Danh sách chờ)';
+
+                                return (
+                                    <option
+                                        key={o.type}
+                                        value={o.type}
+                                        // only truly-disabled classes cannot be picked:
+                                        disabled={o.state === 'disabled'}
+                                        className={`
+                                            ${o.state === 'enabled' ? 'text-green-600' : ''}
+                                            ${o.state === 'wishlist' ? 'text-yellow-600' : ''}
+                                            ${o.state === 'disabled' ? 'text-gray-600' : ''}
+                                        `}>
+                                        {o.type}
+                                        {suffix}
+                                    </option>
+                                );
+                            })}
                         </select>
 
                         <label
@@ -182,139 +198,6 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
         });
     };
 
-    // const renderStudentFields = () => {
-    //     let fields = [];
-    //     for (let i = 1; i <= numStudents; i++) {
-    //         fields.push(
-    //             <div key={i}>
-    //                 <div className='flex items-center gap-1 mb-5'>
-    //                     <UserIcon className='h-6 w-6 text-rose-600' />
-    //                     <span className='text-rose-600 font-medium text-lg'>
-    //                         {numStudents == 1 ? 'Thông tin học sinh' : 'Thông tin học sinh thứ ' + i}
-    //                     </span>
-    //                 </div>
-
-    //                 <div className='grid md:grid-cols-2 md:gap-6 '>
-    //                     <div className='relative z-0 w-full mb-6 group'>
-    //                         <input
-    //                             id={`studentName${i}`}
-    //                             type='text'
-    //                             name='studentName'
-    //                             className='block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-    //                             placeholder=' '
-    //                             required
-    //                         />
-    //                         <label
-    //                             htmlFor='studentName'
-    //                             className=' peer-focus:font-medium absolute text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6'>
-    //                             Họ và tên <span className='text-red-600'>*</span>
-    //                         </label>
-    //                     </div>
-
-    //                     <div className='relative z-0 w-full mb-6 group'>
-    //                         <input
-    //                             id={`year${i}`}
-    //                             type='number'
-    //                             min='2008'
-    //                             max='2012'
-    //                             name='year'
-    //                             className='block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-    //                             placeholder=' '
-    //                             required
-    //                         />
-    //                         <label
-    //                             htmlFor='year'
-    //                             className=' peer-focus:font-medium absolute text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6'>
-    //                             Năm sinh <span className='text-red-600'>*</span>
-    //                         </label>
-    //                     </div>
-    //                 </div>
-
-    //                 <div className='grid md:grid-cols-2 md:gap-6'>
-    //                     <div className='relative z-0 w-full mb-6 group'>
-    //                         <input
-    //                             id={`school${i}`}
-    //                             type='text'
-    //                             name='school'
-    //                             list={`school-list-${i}`}
-    //                             className='block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-    //                             placeholder=' '
-    //                             required
-    //                         />
-    //                         <label
-    //                             htmlFor='school'
-    //                             className=' peer-focus:font-medium absolute  text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6'>
-    //                             Trường <span className='text-red-600'>*</span>
-    //                         </label>
-
-    //                         <datalist id={`school-list-${i}`}>
-    //                             {schoolList.map((s) => (
-    //                                 <option key={s.name} value={s.name} />
-    //                             ))}
-    //                         </datalist>
-    //                     </div>
-
-    //                     <div className='relative z-0 w-full mb-3 group'>
-    //                         <input
-    //                             id={`studentPhone${i}`}
-    //                             type='tel'
-    //                             name='studentPhone'
-    //                             className='block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-    //                             placeholder=' '
-    //                         />
-    //                         <label
-    //                             htmlFor='studentPhone'
-    //                             className=' peer-focus:font-medium absolute  text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-focus:scale-75 peer-focus:-translate-y-6'
-    //                             pattern='0[35789][0-9]{8}'
-    //                             title='Số điện thoại không hợp lệ.'>
-    //                             Số điện thoại (Không bắt buộc)
-    //                         </label>
-    //                     </div>
-    //                 </div>
-
-    //                 <div className='relative z-0 w-full mb-3 group'>
-    //                     <input
-    //                         id={`subject${i}`}
-    //                         name='subject'
-    //                         list={`subject-list-${i}`}
-    //                         placeholder=' '
-    //                         className='block py-2.5 px-0 w-full text-gray-500 bg-transparent
-    //            border-0 border-b-2 border-gray-300 appearance-none
-    //            focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-    //                         required
-    //                         // chỉ cho phép 1 trong các giá trị này
-    //                         pattern={`^(${classOptions
-    //                             .filter((o) => o.state !== 'disabled') // chỉ các lớp “enabled”
-    //                             .map((o) => o.type.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')) // escape regex
-    //                             .join('|')})$`}
-    //                         title='Vui lòng chọn một lớp có trong danh sách'
-    //                     />
-    //                     <label
-    //                         htmlFor={`subject${i}`}
-    //                         className='peer-focus:font-medium absolute text-gray-500 duration-300
-    //            transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]
-    //            peer-focus:left-0 peer-focus:text-blue-600
-    //            peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1
-    //            peer-focus:scale-75 peer-focus:-translate-y-6'>
-    //                         Chọn lớp học <span className='text-red-600'>*</span>
-    //                     </label>
-
-    //                     <datalist id={`subject-list-${i}`}>
-    //                         {classOptions.map((option) => (
-    //                             <option
-    //                                 key={option.type}
-    //                                 value={option.type}
-    //                                 // datalist doesn’t support disabling, so we just skip disabled ones in the pattern
-    //                             />
-    //                         ))}
-    //                     </datalist>
-    //                 </div>
-    //             </div>
-    //         );
-    //     }
-    //     return fields;
-    // };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
@@ -328,13 +211,13 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
             updated.push({
                 studentId: isEdit && data[i - 1]?.studentId ? data[i - 1].studentId : nanoid(),
                 time: new Date(),
-                registerPhone,
+                registerPhone: fields.backupPhone.value,
                 studentName: formatName(fields[`studentName${i}`].value),
                 studentPhone: fields[`studentPhone${i}`].value,
                 school: fields[`school${i}`].value,
                 year: fields[`year${i}`].value,
                 subject: fields[`subject${i}`].value,
-                backupPhone: fields.backupPhone.value || registerPhone,
+                backupPhone: fields.backupPhone.value,
                 email: fields.email.value,
             });
         }
@@ -352,7 +235,9 @@ export default function MyModal({ onClose, registerPhone, data = null, onDataUpd
                         orig.studentPhone === upd.studentPhone &&
                         orig.school === upd.school &&
                         orig.year === upd.year &&
-                        orig.subject === upd.subject
+                        orig.subject === upd.subject &&
+                        orig.backupPhone === upd.backupPhone &&
+                        orig.registerPhone === upd.registerPhone
                     );
                 });
 

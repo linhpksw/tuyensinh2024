@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import { UserIcon, UsersIcon, ArrowRightIcon, HomeIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
-import { info } from '@/lib/data';
+import { info, classOptions } from '@/lib/data';
 
 import Link from 'next/link';
 
@@ -19,7 +19,9 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
 
     const [deleteTarget, setDeleteTarget] = useState(null);
     const router = useRouter();
-    const isNotAvailale = data[0].subject.includes('10');
+
+    const selectedOption = classOptions.find((o) => o.type === data[0].subject);
+    const isWishlist = selectedOption?.state === 'wishlist';
 
     const openDeleteModal = (target) => {
         setDeleteTarget(target);
@@ -185,15 +187,15 @@ const Confirmation = ({ data, onDataUpdated, registerPhone }) => {
                     <CheckBadgeIcon className='w-8 h-8 lg:w-10 lg:h-10 text-emerald-500' />
                 </div>
 
-                {/* {isNotAvailale && (
+                {isWishlist && (
                     <div className='gap-2 mt-3'>
                         <div className='p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50'>
-                            <span className='font-medium'>Chú ý: </span> Khối 10 hiện tại đã đủ sĩ số lớp và đơn đăng ký
-                            của phụ huynh sẽ nằm vào trong danh sách chờ của lớp. CLB Ánh Sáng sẽ liên hệ với PH ngay
-                            khi lớp có chỗ trống mới hoặc có thêm lớp mới ạ.
+                            <span className='font-medium'>Chú ý: </span> Đơn đăng ký này hiện đang nằm trong danh sách
+                            chờ. CLB Ánh Sáng sẽ liên hệ lại ngay cho phụ huynh khi có chỗ trống hoặc có lớp mới mở
+                            thêm.
                         </div>
                     </div>
-                )} */}
+                )}
 
                 <p className='mt-3 text-base text-gray-500'>
                     Đơn đăng kí học cho học sinh{' '}
