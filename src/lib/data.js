@@ -271,7 +271,7 @@ export const timetable = {
                 },
                 {
                     subject: 'Hình học',
-                    time: 'Chủ nhật từ 10h - 11h45',
+                    time: 'Chủ nhật từ 9h - 10h45',
                     teacher: 'Thầy Lâm',
                 },
             ],
