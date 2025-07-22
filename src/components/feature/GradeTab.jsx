@@ -11,7 +11,7 @@ import Info from '@/components/feature/Info';
 
 export const GradeTab = () => {
     return (
-        <Tabs defaultValue='c2' className='w-full'>
+        <Tabs defaultValue='c3' className='w-full'>
             <TabsList className='flex justify-center items-center'>
                 {gradeTab.map((item, index) => (
                     <TabsTrigger key={index} value={item.grade}>
