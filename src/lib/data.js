@@ -169,12 +169,12 @@ export const timetable = {
             child: [
                 {
                     subject: 'Đại số - Số học',
-                    time: 'Thứ 3 từ 19h - 21h',
+                    time: 'Thứ 5 từ 19h - 21h',
                     teacher: 'PGS-TS Phùng Văn Mạnh',
                 },
                 {
                     subject: 'Hình học',
-                    time: 'Thứ 7 từ 19h - 21h',
+                    time: 'Chủ nhật từ 19h - 21h',
                     teacher: 'Thầy Lâm',
                 },
             ],
@@ -188,12 +188,12 @@ export const timetable = {
             child: [
                 {
                     subject: 'Hình học',
-                    time: 'Thứ 3 từ 19h - 21h',
+                    time: 'Thứ 5 từ 19h - 21h',
                     teacher: 'Thầy Lâm',
                 },
                 {
                     subject: 'Đại số - Số học',
-                    time: 'Thứ 7 từ 19h - 21h',
+                    time: 'Chủ nhật từ 19h - 21h',
                     teacher: 'PGS-TS Phùng Văn Mạnh',
                 },
             ],
@@ -207,12 +207,12 @@ export const timetable = {
             child: [
                 {
                     subject: 'Hình học',
-                    time: 'Thứ 5 từ 18h30 - 21h30',
+                    time: 'Thứ 3 từ 19h - 21h',
                     teacher: 'Thầy Lâm',
                 },
                 {
                     subject: 'Đại số - Số học',
-                    time: 'Chủ nhật từ 19h - 21h',
+                    time: 'Thứ 7 từ 17h45 - 20h45',
                     teacher: 'PGS-TS Phùng Văn Mạnh',
                 },
             ],
@@ -226,12 +226,12 @@ export const timetable = {
             child: [
                 {
                     subject: 'Hình học',
-                    time: 'Thứ 5 từ 19h - 21h',
+                    time: 'Thứ 7 từ 15h - 17h',
                     teacher: 'Thầy Lâm',
                 },
                 {
                     subject: 'Đại số - Số học',
-                    time: 'Chủ nhật từ 18h30 - 21h30',
+                    time: 'Thứ 3 từ 18h30 - 21h30',
                     teacher: 'PGS-TS Phùng Văn Mạnh',
                 },
             ],
@@ -245,12 +245,12 @@ export const timetable = {
             child: [
                 {
                     subject: 'Hình học và bất đẳng thức',
-                    time: 'Thứ 4 từ 19h - 21h',
+                    time: 'Thứ 4 từ 17h45 - 19h30',
                     teacher: 'Thầy Lâm',
                 },
                 {
                     subject: 'Đại số',
-                    time: 'Thứ 7 từ 19h - 21h',
+                    time: 'Thứ 7 từ 15h - 16h45',
                     teacher: 'Cô Hường',
                 },
             ],
@@ -266,12 +266,12 @@ export const timetable = {
             child: [
                 {
                     subject: 'Đại số',
-                    time: 'Thứ 6 từ 19h - 21h',
+                    time: 'Thứ 2 từ 17h45 - 19h30',
                     teacher: 'Thầy Hưng',
                 },
                 {
                     subject: 'Hình học',
-                    time: 'Chủ nhật từ 9h - 10h45',
+                    time: 'Thứ 4 từ 19h45 - 21h30',
                     teacher: 'Thầy Lâm',
                 },
             ],
@@ -285,13 +285,13 @@ export const timetable = {
             child: [
                 {
                     subject: 'Hình học',
-                    time: 'Thứ 6 từ 19h - 21h',
+                    time: 'Thứ 4 từ 17h45 - 19h30',
                     teacher: 'Cô Hường',
                 },
                 {
                     subject: 'Đại số',
-                    time: 'Chủ nhật từ 10h - 11h45',
-                    teacher: 'Thầy Hưng',
+                    time: 'Thứ 2 từ 17h45 - 19h30',
+                    teacher: 'Cô Vân Anh',
                 },
             ],
 
