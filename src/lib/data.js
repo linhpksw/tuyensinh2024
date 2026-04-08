@@ -30,7 +30,7 @@ export const info = {
     address: 'Số 30 Bà Triệu, P.Nguyễn Trãi, Hà Đông, Hà Nội',
     displayPhone: '036 286 0970',
     phone: '0362860970',
-    googleMap: 'https://maps.app.goo.gl/LCknxaxXBWVoBNqg6',
+    googleMap: 'https://maps.app.goo.gl/t1d9X5YUbgt4YjsP6',
     logo: 'https://tuyensinh.clbanhsang.com/img/logo/logo-alter.png',
     zaloOA: 'https://zalo.me/clbanhsang',
     zaloOAName: 'Trung tâm Toán Câu lạc bộ Ánh Sáng',
