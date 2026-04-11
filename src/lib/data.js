@@ -3,6 +3,7 @@ import coHuong from '../../public/img/teacher/coHuong.jpg';
 import thayLam from '../../public/img/teacher/thayLam.jpg';
 // import thayPhuong from '../../public/img/teacher/thayPhuong.jpg';
 import thayHung from '../../public/img/teacher/thayHung.jpg';
+import coVanAnh from '../../public/img/teacher/coVanAnh.jpg';
 
 import toan7P1 from '../../public/img/document/toan7P1.jpg';
 import toan7P2 from '../../public/img/document/toan7P2.jpg';
@@ -339,6 +340,11 @@ export const teacher = {
             name: 'Thầy Trần Bá Hưng',
             src: thayHung,
             bio: 'Giáo viên toán trường THPT chuyên Nguyễn Huệ, tốt nghiệp bằng xuất sắc ĐHSP toán, được vào thẳng hệ cao học, điểm 10 thi THPTQG toán 2019.',
+        },
+        {
+            name: 'Cô Lê Thị Vân Anh',
+            src: coVanAnh,
+            bio: 'Cựu học sinh chuyên toán Phan Bội Châu Nghệ An. Thạc sĩ toán học. Thủ khoa môn toán kì thi thi tuyển công chức Hà Nội 2019. Giáo viên dạy toán THPT chuyên Nguyễn Huệ, giáo viên chủ nhiệm lớp 11 chuyên Tin. Dạy ôn thi đại học nhiều năm.',
         },
     ],
 };
