@@ -263,7 +263,7 @@ export const timetable = {
         {
             no: 1,
             grade: 'LỚP 10A0 - VẬN DỤNG CAO',
-            opening: 'Khai giảng vào 19h tối Thứ hai 3/8/2026',
+            opening: 'Khai giảng vào 17h45 tối Thứ hai 3/8/2026',
             child: [
                 {
                     subject: 'Đại số',
@@ -282,7 +282,7 @@ export const timetable = {
         {
             no: 2,
             grade: 'LỚP 10A1 - NÂNG CAO',
-            opening: 'Khai giảng vào 19h tối Thứ hai 3/8/2026',
+            opening: 'Khai giảng vào 17h45 tối Thứ hai 3/8/2026',
             child: [
                 {
                     subject: 'Hình học',
